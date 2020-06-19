@@ -18,11 +18,16 @@
 - [Yesod](https://www.yesodweb.com/book)
 
 ## Server & Client communication
-- [REST API]
+- REST API
 
 ## Backend Design 
 - Cabal 
 - [Postman (covid tracking)](https://covid-19-apis.postman.com)
 
+## "Research Topic repartition "
+
+Luca: Database connection, 
+Lidia: backend,
+Kevin: Client Server Technologie. 
 
 
