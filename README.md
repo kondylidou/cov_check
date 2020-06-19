@@ -17,15 +17,14 @@
 - [Example](https://africovid19.info/diagnostic)
 - [Yesod](https://www.yesodweb.com/book)
 
-## Server & Client communication
+## Server & Client Communication
 - REST API
 
 ## Backend Design 
 - Cabal 
 - [Postman (covid tracking)](https://covid-19-apis.postman.com)
 
-## "Research Topic repartition "
-
+## Tickets
 Luca: Database connection, 
 Lidia: backend,
 Kevin: Client Server Technologie. 
