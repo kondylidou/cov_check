@@ -4,7 +4,7 @@
 
 ## Usage
 - CovCheck provides real time informations about the current situation of COVID-19 Worldwide 
-- CovCheck enable an automatic test (Quiz) to check whether someones is infected by the Corona Virus or not. 
+- CovCheck enables an automatic test (Quiz) to check whether someones is infected by the Corona Virus or not. 
 
 ## Sources & Literature
 - [WebApp Tutorial](https://jaxenter.com/tutorial-developing-web-applications-in-haskell-107334.html)
