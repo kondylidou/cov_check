@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+
 <div .masthead>
     <div .container>
         <div .row>
@@ -8,6 +10,7 @@
             <a href="http://www.yesodweb.com/book/" .btn.btn-info.btn-lg>
                 Read the Book
 
+
 <div .container>
     <!-- Starting
         ================================================== -->
@@ -15,8 +18,7 @@
         <div .row>
             <div .col-lg-12>
                 <div .page-header>
-                    <h1 #start>Starting
-
+                    <h1 #start>Starting                  
                     <p>
                         Now that you have a working project you should use the
                         <a href=http://www.yesodweb.com/book/>Yesod book</a> to learn more.
@@ -89,6 +91,28 @@
 
 
     <hr>
+        <div .row>
+            <div .col-lg-6>
+                <div .bs-callout.bs-callout-info.well>
+                    <form .form-horizontal ##{commentFormId}>
+                        <div .field>
+                            <textarea rows="2" ##{commentTextareaId} placeholder="Your comment here..." required></textarea>
+
+                        <button .btn.btn-primary type=submit>
+                           Create comment
+                
+
+
+           <div .col-lg-4.col-lg-offset-1>
+               <div .bs-callout.bs-callout-info>
+                   <small>
+                       Your comments will appear here. You can also open the
+                       console log to see the raw response from the server.
+                   <ul ##{commentListId}>
+                       $forall comment <- allComments
+                           <li>#{commentMessage $ entityVal comment}
+    <hr>
+
 
     <!-- JSON
         ================================================== -->
@@ -114,6 +138,8 @@
 
                         <button .btn.btn-primary type=submit>
                            Create comment
+                
+
 
            <div .col-lg-4.col-lg-offset-1>
                <div .bs-callout.bs-callout-info>
@@ -139,3 +165,37 @@
                        test suite that performs tests on this page.
                    <p>
                        You can run your tests by doing: <code>stack test</code>
+
+    <!-- COROQUIZ
+            ================================================== -->
+        <div .bs-docs-section>
+            <div .row>
+                <div .col-lg-12>
+                    <div .page-header>
+                        <h1 #json>COROQUIZ
+                        <head>
+                            <title>Example of creating an alternative custom navigation, jQuery Survey Library Example</title>
+
+                                <meta name="viewport" content="width=device-width"/>
+                                <script src="https://unpkg.com/jquery"></script>
+                                <script src="https://surveyjs.azureedge.net/1.7.26/survey.jquery.js"></script>
+                                <link href="https://surveyjs.azureedge.net/1.7.26/modern.css" type="text/css" rel="stylesheet"/>
+                                <link rel="stylesheet" href="./index.css">
+
+                        
+                        <body>
+
+                            External navigation:
+                            <span id="surveyProgress"/>
+                            <a id="surveyPrev" href="#" onclick="survey.prevPage();">Prev</a>
+                            <a id="surveyNext" href="#" onclick="survey.nextPage();">Next</a>
+                            <a id="surveyComplete" href="#" onclick="survey.completeLastPage();">Complete</a>
+                            <br>
+                            Go to page directly without validation:
+                            <select id="pageSelector" onchange="survey.currentPageNo = this.value"></select>
+
+                            <hr>
+                            <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+                            <div id="surveyResult"/>
+
+                            <script type="text/javascript" src="./index.js"></script>

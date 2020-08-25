@@ -8,6 +8,8 @@ module Handler.Home where
 import Import
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
 import Text.Julius (RawJS (..))
+import Text.Blaze.Html       (preEscapedToHtml)
+import Text.Shakespeare.Text (stextFile)
 
 -- Define our data that will be used for creating the form.
 data FileForm = FileForm
