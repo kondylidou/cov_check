@@ -8,4 +8,4 @@ database:
   #   database: "_env:SQLITE_DATABASE:CovCheck_test.sqlite3"
   database: CovCheck_test.sqlite3
 
-auth-dummy-login: true
+auth-dummy-login: false

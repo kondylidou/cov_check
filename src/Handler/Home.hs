@@ -27,7 +27,7 @@ data FileForm = FileForm
 -- The majority of the code you will write in Yesod lives in these handler
 -- functions. You can spread them across multiple files if you are so
 -- inclined, or create a single monolithic file.
-{--getHomeR :: Handler Html
+getHomeR :: Handler Html
 getHomeR = do
     (formWidget, formEnctype) <- generateFormPost sampleForm
     let submission = Nothing :: Maybe FileForm
@@ -39,33 +39,16 @@ getHomeR = do
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
         $(widgetFile "homepage")
---}
+
+        -- getYesod >>= addScriptEither . urlJqueryJs
+        [whamlet|
+            <button #post>Post
+        |]
+        $(widgetFile "quizpage")
 
 
 
-getHomeR :: Handler Html
-getHomeR = defaultLayout $ do
-    setTitle "Hello POST"
-    -- getYesod >>= addScriptEither . urlJqueryJs
-    [whamlet|
-        <button #post>Post
-    |]
-    toWidget script
- 
-script = [julius|
-$(function(){
-    $("#post").click(function(){
-        $.ajax({
-            url: "@{JsonR}",
-            type: "POST",
-            success: function(result) {
-                alert(result);
-            },
-            dataType: "json"
-        });
-    });
-});
-|]
+
  
 postJsonR :: Handler Value
 postJsonR = do
