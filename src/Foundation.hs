@@ -121,8 +121,8 @@ instance Yesod App where
                     , menuItemAccessCallback = isJust muser
                     }
                 , NavbarRight $ MenuItem
-                    { menuItemLabel = "Login"
-                    , menuItemRoute = AuthR LoginR
+                    { menuItemLabel = "Quiz"
+                    , menuItemRoute = QuizR
                     , menuItemAccessCallback = isNothing muser
                     }
                 , NavbarRight $ MenuItem
@@ -164,6 +164,7 @@ instance Yesod App where
     isAuthorized CommentR _ = return Authorized
     isAuthorized HomeR _ = return Authorized
     isAuthorized JsonR _ = return Authorized
+    isAuthorized QuizR _ = return Authorized
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized

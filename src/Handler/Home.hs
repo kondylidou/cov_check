@@ -38,16 +38,14 @@ getHomeR = do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
-        $(widgetFile "homepage")
-
-        -- getYesod >>= addScriptEither . urlJqueryJs
-        [whamlet|
-            <button #post>Post
-        |]
-        $(widgetFile "quizpage")
+        $(widgetFile "homepage")    
 
 
 
+getQuizR :: Handler Html
+getQuizR = defaultLayout $ do
+            setTitle "Take a Quiz"
+            $(widgetFile "quizpage")
 
  
 postJsonR :: Handler Value

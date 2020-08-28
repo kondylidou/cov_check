@@ -9,6 +9,8 @@
 
 / HomeR GET POST
 
+/quiz QuizR GET 
+
 /json JsonR POST
 
 /comments CommentR POST
