@@ -1,18 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
-{-# LANGUAGE QuasiQuotes       #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE ViewPatterns      #-}
-
 module Handler.Home where
 
 import Import
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
 import Text.Julius (RawJS (..))
-import Yesod.Form.Jquery (YesodJquery (urlJqueryJs))
-
 
 -- Define our data that will be used for creating the form.
 data FileForm = FileForm
@@ -22,7 +17,7 @@ data FileForm = FileForm
 
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
--- config/routes
+-- config/routes.yesodroutes
 --
 -- The majority of the code you will write in Yesod lives in these handler
 -- functions. You can spread them across multiple files if you are so
@@ -38,13 +33,7 @@ getHomeR = do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
         setTitle "Welcome To Yesod!"
-        $(widgetFile "homepage")    
-
-
-postJsonR :: Handler Value
-postJsonR = do
-    returnJson $ ([1,2,3] :: [Int])
- 
+        $(widgetFile "homepage")
 
 postHomeR :: Handler Html
 postHomeR = do

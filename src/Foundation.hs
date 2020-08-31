@@ -115,10 +115,20 @@ instance Yesod App where
                     , menuItemRoute = HomeR
                     , menuItemAccessCallback = True
                     }
+                , NavbarLeft $ MenuItem
+                    { menuItemLabel = "Profile"
+                    , menuItemRoute = ProfileR
+                    , menuItemAccessCallback = isJust muser
+                    }
                 , NavbarRight $ MenuItem
-                    { menuItemLabel = "Quiz"
-                    , menuItemRoute = QuizR
-                    , menuItemAccessCallback = True
+                    { menuItemLabel = "Login"
+                    , menuItemRoute = AuthR LoginR
+                    , menuItemAccessCallback = isNothing muser
+                    }
+                , NavbarRight $ MenuItem
+                    { menuItemLabel = "Logout"
+                    , menuItemRoute = AuthR LogoutR
+                    , menuItemAccessCallback = isJust muser
                     }
                 ]
 
@@ -153,10 +163,10 @@ instance Yesod App where
     isAuthorized (AuthR _) _ = return Authorized
     isAuthorized CommentR _ = return Authorized
     isAuthorized HomeR _ = return Authorized
-    isAuthorized QuizR _ = return Authorized
-    isAuthorized PersonR _ = return Authorized
     isAuthorized FaviconR _ = return Authorized
     isAuthorized RobotsR _ = return Authorized
+    isAuthorized PersonR _ = return Authorized
+    isAuthorized QuizR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
 
     -- the profile route requires that the user is authenticated, so we
@@ -208,7 +218,8 @@ instance YesodBreadcrumbs App where
         :: Route App  -- ^ The route the user is visiting currently.
         -> Handler (Text, Maybe (Route App))
     breadcrumb HomeR = return ("Home", Nothing)
-    breadcrumb QuizR = return ("Quiz", Just HomeR)
+    breadcrumb (AuthR _) = return ("Login", Just HomeR)
+    breadcrumb ProfileR = return ("Profile", Just HomeR)
     breadcrumb  _ = return ("home", Nothing)
 
 -- How to run database actions.
