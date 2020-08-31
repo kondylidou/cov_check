@@ -41,13 +41,6 @@ getHomeR = do
         $(widgetFile "homepage")    
 
 
-
-getQuizR :: Handler Html
-getQuizR = defaultLayout $ do
-            setTitle "Take a Quiz"
-            $(widgetFile "quizpage")
-
- 
 postJsonR :: Handler Value
 postJsonR = do
     returnJson $ ([1,2,3] :: [Int])

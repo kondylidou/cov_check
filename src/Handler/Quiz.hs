@@ -6,23 +6,27 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE OverloadedStrings     #-}
 
-module Handler.Greet where
+module Handler.Quiz where
 
-import 			 Import
-import           Control.Applicative ((<$>), (<*>))
-import           Data.Text           (Text)
-import           Data.Time           (Day)
-import           Yesod
-import           Yesod.Form.Jquery
+import Import
+import Control.Applicative ((<$>), (<*>))
+import Data.Text           (Text)
+import Data.Time           (Day)
+import Yesod
+import Yesod.Form.Jquery
 
 -- The datatype we wish to receive from the form
 data Person = Person
-    { personName          :: Text
-    , personFavoriteColor :: Maybe Text
-    , personEmail         :: Text
-    , personWebsite       :: Maybe Text
+    { personName    :: Text
+    , personAge     :: Int
+    , personColor   :: Color
+    , personContent :: Textarea
     }
   deriving Show
+
+data Color = Red | Blue | Gray | Black
+    deriving (Show, Eq, Enum, Bounded)
+
 
 -- Declare the form. The type signature is a bit intimidating, but here's the
 -- overview:
@@ -47,14 +51,14 @@ data Person = Person
 -- For our purposes, it's good to see the long version.
 personForm :: Html -> MForm Handler (FormResult Person, Widget)
 personForm = renderDivs $ Person
-    <$> areq textField "Name" Nothing
-    <*> aopt textField "Favorite color" Nothing
-    <*> areq emailField "Email address" Nothing
-    <*> aopt urlField "Website" Nothing
+    <$> areq textField "What's your name?" Nothing
+    <*> areq intField "How old are you?" Nothing
+    <*> areq (radioField optionsEnum) "Color" Nothing
+    <*> areq textareaField "What is your current living situation?" Nothing
 
 -- The GET handler displays the form
-getGreetR :: Handler Html
-getGreetR = do
+getQuizR :: Handler Html
+getQuizR = do
     -- Generate the form to be displayed
     (widget, enctype) <- generateFormPost personForm
     defaultLayout

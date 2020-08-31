@@ -11,11 +11,7 @@
 
 /quiz QuizR GET 
 
-/greet GreetR GET 
-
 /person PersonR POST
-
-/json JsonR POST
 
 /comments CommentR POST
 
