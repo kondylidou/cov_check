@@ -12,8 +12,9 @@ import Import
 import Control.Applicative ((<$>), (<*>))
 import Data.Text           (Text)
 import Data.Time           (Day)
-import Yesod
-import Yesod.Form.Jquery
+import Data.Vector() 
+import Yesod()
+import Yesod.Form.Jquery()
 
 -- The datatype we wish to receive from the form
 data Person = Person
@@ -23,6 +24,17 @@ data Person = Person
     , personContent :: Textarea
     }
   deriving Show
+
+data Questions = Questions
+    { typ          :: Text
+    , name          :: Text
+    , title         :: Text
+    , colCount      :: Int
+    , isRequired    :: Bool
+    }
+    deriving Show
+
+
 
 data Color = Red | Blue | Gray | Black
     deriving (Show, Eq, Enum, Bounded)
