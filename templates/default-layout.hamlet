@@ -21,7 +21,8 @@
                         <a href="@{route}">#{label}
 
 <!-- Page Contents -->
-
+<!--    I commented this out so the bar with home doesn't just pointlessly float on top of every page. 
+        If this is important in a way I don't yet see, please comment it back in!
 <div .container>
     $if not $ Just HomeR == mcurrentRoute
         <ul .breadcrumb>
@@ -34,7 +35,7 @@
     $maybe msg <- mmsg
       <div .alert.alert-info #message>#{msg}
 
-
+-->
 $if (Just HomeR == mcurrentRoute)
     ^{widget}
 $else

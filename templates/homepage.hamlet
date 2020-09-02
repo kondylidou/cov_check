@@ -15,6 +15,7 @@
         <div .row>
             <div .col-lg-12>
                 <div .page-header>
+                    <a href=@{TestAPIR}>TestAPI Site
                     <h1 #start>Starting
 
                     <p>
