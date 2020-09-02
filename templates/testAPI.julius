@@ -1,0 +1,12 @@
+$.ajax({
+  url: 'https://api.thevirustracker.com/free-api?countryTotals=ALL',
+  dataType: 'json',
+  success: function(data) {
+//    console.log(data);
+    var countryCasesDeathsReacoveries = "";
+    for(i=1; i<=182; i++){
+        countryCasesDeathsReacoveries += JSON.stringify(data.countryitems[0][i].title).replace(/['"]+/g,"") + " has " + JSON.stringify(data.countryitems[0][i].total_cases) + " cases, " + JSON.stringify(data.countryitems[0][i].total_deaths) + " deaths and " + JSON.stringify(data.countryitems[0][i].total_recovered) + " recoveries." + "<br>";
+    }
+    document.getElementById('apidata').innerHTML = countryCasesDeathsReacoveries
+  }
+});
