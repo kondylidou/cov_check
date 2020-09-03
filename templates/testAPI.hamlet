@@ -1,6 +1,15 @@
 <div .container>
-    <h> This is a test site for API stuff. At the moment it displays countries with cases, deaths and recoveries.
-        <p> Das sind die Daten: <br> 
-            <div id="apidata">
+    <h> This is a test site for API stuff. At the moment it displays countries with cases, deaths and recoveries in a table (an ugly table at the moment but still a table).
+        <p> This is the data: <br>
+            <table border=1 width=40% height=80%>
+                <thead>
+                    <tr>
+                        <th> Country</th>
+                        <th> Cases </th>
+                        <th> Deaths</th>
+                        <th> Revoveries</th>
+                <tbody id="tabledata"> 
+<!--
+            <div id="apidata"> -->
             <br>
-            Source: <a href=https://thevirustracker.com/api> Coronavirus Tracker API
+            Source: <a href=https://thevirustracker.com/api> Coronavirus Tracker API </a>        
