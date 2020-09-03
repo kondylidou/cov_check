@@ -11,8 +11,6 @@
 
 /quiz QuizR GET 
 
-/person PersonR POST
-
 /comments CommentR POST
 
 /profile ProfileR GET

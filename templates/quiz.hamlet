@@ -1,26 +1,22 @@
 
 <div .container>
+    <div .jumbotron>
+        <h2>An example of a large horizontal form
 
     <div .jumbotron>
-        <h2>An example of a basic form
+        <h2>  Please fill some personal Informations
         <div .container>
-            <form method=get action=@{HomeR} enctype=#{enctype}>
+            <form method=get action=@{QuizR} enctype=#{enctype}>
                 ^{basicWidget}
 
     <div .jumbotron>
-        <h2>An example of an inline form
+        <h2> Take the quiz here
         <div .container>
-            <form .form-inline method=get action=@{HomeR} enctype=#{enctype}>
-                ^{inlineWidget}
-
-    <div .jumbotron>
-        <h2>An example of a horizontal form
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{horizontalWidget}
-
-    <div .jumbotron>
-        <h2>An example of a large horizontal form
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+            <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
                 ^{largeWidget}
+    
+    <div .jumbotron>
+        <h2> Take the quiz here
+        <div .container>
+            <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
+                ^{questionWidget}
