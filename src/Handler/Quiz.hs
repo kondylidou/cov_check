@@ -33,6 +33,10 @@ data LargeData = LargeData {
     symptoms         :: Symptoms
     }
 
+data Questions = Questions
+    { question      :: Bool
+    }
+    deriving Show
 
 -- The datatype we wish to receive from the form
 data Person = Person
@@ -42,8 +46,6 @@ data Person = Person
     , personEmail   :: Text
     }
   deriving Show
-
-
 
 data Symptoms = Symptoms
     { chills        :: Maybe Bool
@@ -56,10 +58,6 @@ data Symptoms = Symptoms
     , throat        :: Maybe Bool
     , headache      :: Maybe Bool
 
-data Questions = Questions
-    { question      :: Bool
-    }
-    deriving Show
 
 
 hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 2), submit = "Create user" }
