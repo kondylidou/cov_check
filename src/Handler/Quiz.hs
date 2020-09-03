@@ -33,10 +33,6 @@ data LargeData = LargeData {
     symptoms         :: Symptoms
     }
 
-data Questions = Questions
-    { question      :: Bool
-    }
-    deriving Show
 
 -- The datatype we wish to receive from the form
 data Person = Person
@@ -45,7 +41,13 @@ data Person = Person
     , personAge     :: Int
     , personEmail   :: Text
     }
-  deriving Show
+    deriving Show
+
+data Questions = Questions
+    { question      :: Bool
+    }
+    deriving Show
+
 
 data Symptoms = Symptoms
     { chills        :: Maybe Bool
@@ -57,16 +59,16 @@ data Symptoms = Symptoms
     , diarrhea      :: Maybe Bool
     , throat        :: Maybe Bool
     , headache      :: Maybe Bool
-
+    }
+    deriving Show
 
 
 hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 2), submit = "Create user" }
 iConfig = BootstrapFormConfig { form = BootstrapInlineForm, submit = "Create user"}
 bConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Create user" }
-largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Submit" }
+largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Submit large data" }
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
-
 {--
 personHForm :: Html -> MForm Handler (FormResult Person, Widget)
 personHForm = renderBootstrap hConfig $ Person
@@ -87,13 +89,17 @@ personForm = renderBootstrap bConfig $ Person
     <*> areq checkBoxField (bootstrapFieldHelper bConfig "Surname" (Just "Person surname")) Nothing
 --}
 
-
 personForm :: Html -> MForm Handler (FormResult Person, Widget)
 personForm = renderBootstrap hConfig $ Person
     <$> areq textField (bootstrapFieldHelper hConfig "Name" (Just "Person name")) Nothing
     <*> areq textField (bootstrapFieldHelper hConfig "Surname" (Just "Person surname")) Nothing
     <*> areq intField (bootstrapFieldHelper hConfig "Age" (Just "0")) Nothing
     <*> areq textField (bootstrapFieldHelper hConfig "Email" (Just "Person email")) Nothing
+
+questionForm :: Html -> MForm Handler (FormResult Questions, Widget)
+questionForm = renderBootstrap largeFormConfig $ Questions
+    <$> areq boolField (bootstrapFieldHelper iConfig 
+    "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?" (Just "Some text content")) Nothing
 
 largeDataForm :: Html -> MForm Handler (FormResult LargeData, Widget)
 largeDataForm = renderBootstrap largeFormConfig $ LargeData
@@ -147,23 +153,15 @@ personForm = renderDivs $ Person
     <*> areq (radioField optionsEnum) "Color" Nothing
     <*> areq textareaField "What is your current living situation?" Nothing
 --}
-    {-- <*> areq [textField] (bootstrapFieldHelper hConfig "Colors" (Just "Some checkbox")) Nothing --}
-
-questionForm :: Html -> MForm Handler (FormResult Questions, Widget)
-questionForm = renderBootstrap largeFormConfig $ Questions
-    <$> areq boolField (bootstrapFieldHelper iConfig 
-    "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?" (Just "Some text content")) Nothing
 
 -- The GET handler displays the form
 getQuizR :: Handler Html
 getQuizR = do
-    --(basicWidget, enctype) <- generateFormPost personForm
+    (basicWidget, enctype) <- generateFormPost personForm
     --(inlineWidget, enctype) <- generateFormPost personIForm
     --(horizontalWidget, enctype) <- generateFormPost personHForm
-    (basicWidget, enctype) <- generateFormPost personForm
     (largeWidget, enctype) <- generateFormPost largeDataForm
     (questionWidget, enctype) <- generateFormPost questionForm
-
     defaultLayout $ do
         addStylesheetRemote "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
         $(widgetFileReload def "Quiz")
