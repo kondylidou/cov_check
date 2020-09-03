@@ -13,97 +13,110 @@
             <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
                 ^{largeWidget}
     
-     <div .jumbotron>
-        <h2> Age 
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> How old are you? 
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Work
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
-    <div .jumbotron>
-        <h2> Smoke
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Work
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
+        
+        <div .jumbotron>
+            <h2> Are you living alone?
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
+        
+        <div .jumbotron>
+            <h2> At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{questionWidget}
 
-    <div .jumbotron>
-        <h2> Pregnant
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Smoke
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Contact
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Pregnant
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Fever
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Contact
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Fever4
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Fever
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Symptoms
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Fever4
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Breath
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Symptoms
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Lung
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Breath
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Diabetes
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Lung
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Heart
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Diabetes
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Obesity
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Heart
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Steroids
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Obesity
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Immunosuppressants
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Steroids
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
 
-    <div .jumbotron>
-        <h2> Vaccinated
-        <div .container>
-            <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
-                ^{largeWidget}
+        <div .jumbotron>
+            <h2> Immunosuppressants
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}
+
+        <div .jumbotron>
+            <h2> Vaccinated
+            <div .container>
+                <form .form-horizontal method=get action=@{HomeR} enctype=#{enctype}>
+                    ^{largeWidget}

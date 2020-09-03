@@ -31,7 +31,6 @@ data LargeData = LargeData {
     fever            :: Bool,
     fever4           :: Bool,
     checkboxField1   :: Bool
- --   colors            :: (Text,Text)
     }
 
 
@@ -46,11 +45,7 @@ data Person = Person
 
 
 data Questions = Questions
-    { typ           :: Text
-    , name          :: Text
-    , title         :: Text
-    , colCount      :: Int
-    , isRequired    :: Bool
+    { question      :: Bool
     }
     deriving Show
 
@@ -58,7 +53,7 @@ data Questions = Questions
 hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 2), submit = "Create user" }
 iConfig = BootstrapFormConfig { form = BootstrapInlineForm, submit = "Create user"}
 bConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Create user" }
-largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Submit large data" }
+largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Submit" }
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
 
@@ -83,13 +78,22 @@ largeDataForm = renderBootstrap largeFormConfig $ LargeData
     <*> areq boolField (bootstrapFieldHelper hConfig "In the past 24 hours, have you had a fever (over 38°C)?" (Just "Some bool")) Nothing
     <*> areq boolField (bootstrapFieldHelper hConfig "In the past 4 days, have you had a fever (over 38°C)?" (Just "Some bool")) Nothing
     <*> areq checkBoxField (bootstrapFieldHelper hConfig "Checkbox" (Just "Some checkbox")) Nothing
- 
+    {-- <*> areq [textField] (bootstrapFieldHelper hConfig "Colors" (Just "Some checkbox")) Nothing --}
+
+questionForm :: Html -> MForm Handler (FormResult Questions, Widget)
+questionForm = renderBootstrap largeFormConfig $ Questions
+    <$> areq boolField (bootstrapFieldHelper iConfig 
+    "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?" (Just "Some text content")) Nothing
+
+
 
 -- The GET handler displays the form
 getQuizR :: Handler Html
 getQuizR = do
     (basicWidget, enctype) <- generateFormPost personForm
     (largeWidget, enctype) <- generateFormPost largeDataForm
+    (questionWidget, enctype) <- generateFormPost questionForm
+
     defaultLayout $ do
         addStylesheetRemote "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
         $(widgetFileReload def "Quiz")
