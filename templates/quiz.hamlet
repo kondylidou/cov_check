@@ -1,9 +1,6 @@
 
 <div .container>
     <div .jumbotron>
-        <h2>An example of a large horizontal form
-
-    <div .jumbotron>
         <h2>  Please fill some personal Informations
         <div .container>
             <form method=get action=@{QuizR} enctype=#{enctype}>

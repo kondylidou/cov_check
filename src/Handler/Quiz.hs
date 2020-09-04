@@ -32,7 +32,7 @@ data QuizData = QuizData {
     fever4              :: Bool,
     symptoms            :: Symptoms,
     breath              :: Bool,
-    day                 :: Day,
+    day                 :: Maybe Day,
     lung                :: Bool,
     diabetes            :: Bool,
     heart               :: Bool,
@@ -124,7 +124,7 @@ quizDataForm = renderBootstrap largeFormConfig $ QuizData
     <*> areq boolField (bootstrapFieldHelper hConfig "In the past 4 days, have you had a fever (over 38°C)?" (Just "Some bool")) Nothing
     <*> symptoms
     <*> areq boolField (bootstrapFieldHelper hConfig "In the past 24 hours, did you feel that you were more quickly out of breath than usual?" (Just "Some bool")) Nothing
-    <*> areq (jqueryDayField def
+    <*> aopt (jqueryDayField def
         { jdsChangeYear = True -- give a year dropdown
         , jdsYearRange = "1900:-5" -- 1900 till five years ago
         }) "With regard to all questions about symptoms: since when have you had the symptoms you specified?" Nothing
