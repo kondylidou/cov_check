@@ -15,6 +15,7 @@ import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Text.Hamlet          (hamletFile)
 import Text.Jasmine         (minifym)
 import Control.Monad.Logger (LogSource)
+import Yesod.Form.Jquery
 
 -- Used only when in "auth-dummy-login" setting is enabled.
 import Yesod.Auth.Dummy
@@ -68,6 +69,8 @@ type Form x = Html -> MForm (HandlerFor App) (FormResult x, Widget)
 -- | A convenient synonym for database access functions.
 type DB a = forall (m :: * -> *).
     (MonadUnliftIO m) => ReaderT SqlBackend m a
+
+instance YesodJquery App
 
 -- Please see the documentation for the Yesod typeclass. There are a number
 -- of settings which can be configured by overriding methods here.

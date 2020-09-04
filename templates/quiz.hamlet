@@ -13,7 +13,7 @@
         <h2> Take the quiz here
         <div .container>
             <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
-                ^{largeWidget}
+                ^{quizWidget}
     
     <div .jumbotron>
         <h2> Take the quiz here

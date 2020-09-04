@@ -19,18 +19,27 @@ import Yesod.Form.Jquery
 
 import Form.Bootstrap3
 
-data LargeData = LargeData {
-    name             :: Text,
-    age              :: Int,
-    living           :: Bool,
-    care             :: Bool,
-    work             :: Bool,
-    smoke            :: Bool,
-    pregnancy        :: Bool,
-    conf             :: Bool,
-    fever            :: Bool,
-    fever4           :: Bool,
-    symptoms         :: Symptoms
+data QuizData = QuizData {
+    name                :: Text,
+    age                 :: Int,
+    living              :: Bool,
+    care                :: Bool,
+    work                :: Bool,
+    smoke               :: Bool,
+    pregnancy           :: Bool,
+    conf                :: Bool,
+    fever               :: Bool,
+    fever4              :: Bool,
+    symptoms            :: Symptoms,
+    breath              :: Bool,
+    day                 :: Day,
+    lung                :: Bool,
+    diabetes            :: Bool,
+    heart               :: Bool,
+    obesity             :: Bool,
+    steroids            :: Bool,
+    immunosuppressants  :: Bool,
+    flu                 :: Bool
     }
 
 
@@ -66,7 +75,7 @@ data Symptoms = Symptoms
 hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 2), submit = "Create user" }
 iConfig = BootstrapFormConfig { form = BootstrapInlineForm, submit = "Create user"}
 bConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Create user" }
-largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Submit large data" }
+largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Complete" }
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
 {--
@@ -101,8 +110,8 @@ questionForm = renderBootstrap largeFormConfig $ Questions
     <$> areq boolField (bootstrapFieldHelper iConfig 
     "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?" (Just "Some text content")) Nothing
 
-largeDataForm :: Html -> MForm Handler (FormResult LargeData, Widget)
-largeDataForm = renderBootstrap largeFormConfig $ LargeData
+quizDataForm :: Html -> MForm Handler (FormResult QuizData, Widget)
+quizDataForm = renderBootstrap largeFormConfig $ QuizData
     <$> areq textField (bootstrapFieldHelper hConfig "What is your name?" (Just "Some name")) Nothing
     <*> areq intField (bootstrapFieldHelper hConfig "How old are you?" (Just "0")) Nothing
     <*> areq boolField (bootstrapFieldHelper hConfig "Are you living alone?" (Just "Some bool")) Nothing
@@ -114,6 +123,18 @@ largeDataForm = renderBootstrap largeFormConfig $ LargeData
     <*> areq boolField (bootstrapFieldHelper hConfig "In the past 24 hours, have you had a fever (over 38°C)?" (Just "Some bool")) Nothing
     <*> areq boolField (bootstrapFieldHelper hConfig "In the past 4 days, have you had a fever (over 38°C)?" (Just "Some bool")) Nothing
     <*> symptoms
+    <*> areq boolField (bootstrapFieldHelper hConfig "In the past 24 hours, did you feel that you were more quickly out of breath than usual?" (Just "Some bool")) Nothing
+    <*> areq (jqueryDayField def
+        { jdsChangeYear = True -- give a year dropdown
+        , jdsYearRange = "1900:-5" -- 1900 till five years ago
+        }) "With regard to all questions about symptoms: since when have you had the symptoms you specified?" Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Have you been diagnosed with chronic lung disease by a doctor?" (Just "Some bool")) Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Have you been diagnosed with diabetes by a doctor?" (Just "Some bool")) Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Have you been diagnosed with heart disease by a doctor?" (Just "Some bool")) Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Have you been diagnosed with obesity by a doctor?" (Just "Some bool")) Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Are you currently taking steroids?" (Just "Some bool")) Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Are you currently taking immunosuppressants?" (Just "Some bool")) Nothing
+    <*> areq boolField (bootstrapFieldHelper hConfig "Have you been vaccinated against flu between October 2019 and today?" (Just "Some bool")) Nothing
     where
         symptoms = Symptoms
             <$> aopt checkBoxField (bootstrapFieldHelper hConfig "Chills" (Just "Person chills")) Nothing
@@ -160,7 +181,7 @@ getQuizR = do
     (basicWidget, enctype) <- generateFormPost personForm
     --(inlineWidget, enctype) <- generateFormPost personIForm
     --(horizontalWidget, enctype) <- generateFormPost personHForm
-    (largeWidget, enctype) <- generateFormPost largeDataForm
+    (quizWidget, enctype) <- generateFormPost quizDataForm
     (questionWidget, enctype) <- generateFormPost questionForm
     defaultLayout $ do
         addStylesheetRemote "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
@@ -183,4 +204,16 @@ getQuizR = do
 --}
 -- The POST handler processes the form. If it is successful, it displays the
 -- parsed person. Otherwise, it displays the form again with error messages.
-
+  {--postPersonR :: Handler Html
+postPersonR = do
+    ((result, widget), enctype) <- runFormPost personForm
+    case result of
+        FormSuccess person -> defaultLayout [whamlet|<p>#{show person}|]
+        _ -> defaultLayout
+            [whamlet|
+                <p>Invalid input, let's try again.
+                <form method=post action=@{PersonR} enctype=#{enctype}>
+                    ^{widget}
+                    <button>Submit
+            |]
+--}
