@@ -7,6 +7,7 @@
 module Handler.TestAPI where
 
 import Import
+import Text.Julius()
 
 getTestAPIR :: Handler Html
 getTestAPIR = do

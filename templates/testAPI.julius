@@ -3,10 +3,31 @@ $.ajax({
   dataType: 'json',
   success: function(data) {
 //    console.log(data);
-    var countryCasesDeathsReacoveries = "";
-    for(i=1; i<=182; i++){
-        countryCasesDeathsReacoveries += JSON.stringify(data.countryitems[0][i].title).replace(/['"]+/g,"") + " has " + JSON.stringify(data.countryitems[0][i].total_cases) + " cases, " + JSON.stringify(data.countryitems[0][i].total_deaths) + " deaths and " + JSON.stringify(data.countryitems[0][i].total_recovered) + " recoveries." + "<br>";
+    var shownText = "";
+    var shownTable = "";
+    var countryData = data.countryitems[0];
+    var countryNames = new Array(182);
+    var countryCases = new Array(182);
+    var countryDeaths = new Array(182);
+    var countryRecovered = new Array(182);
+    for(i=1; i<=countryNames.length; i++){
+        countryNames[i-1]=countryData[i].title;
+        countryCases[i-1]=countryData[i].total_cases;
+        countryDeaths[i-1]=countryData[i].total_deaths;
+        countryRecovered[i-1]=countryData[i].total_recovered;
+    }    
+    for(i=0; i<countryNames.length; i++){
+        shownText += countryNames[i] + " has " + countryCases[i] + " cases, " + countryDeaths[i] + " deaths and " + countryRecovered[i] + " recoveries." + "<br>";
+        shownTable += "<tr> <td>" + countryNames[i] + "</td> <td align=right>" + countryCases[i] + "</td> <td align=right>" + countryDeaths[i] + "</td> <td align=right>" + countryRecovered[i] + "</td> </tr>";
     }
-    document.getElementById('apidata').innerHTML = countryCasesDeathsReacoveries
+
+//    console.log(countryNames);
+//    console.log(countryCases);
+//    console.log(countryDeaths);
+//    console.log(countryRecovered);
+//    console.log(countryData);
+//    console.log(shownText);
+    document.getElementById('tabledata').innerHTML = shownTable;
+//    document.getElementById('apidata').innerHTML = shownText;
   }
 });
