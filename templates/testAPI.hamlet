@@ -1,15 +1,16 @@
 <div .container>
-    <h> This is a test site for API stuff. At the moment it displays countries with cases, deaths and recoveries in a table (an ugly table at the moment but still a table).
+    <h> This is a test site for API stuff. At the moment it displays countries with cases, deaths and recoveries in a table (it is less ugly now). <br>
+        To sort the columns just click on that columns header.
         <p> This is the data: <br>
-            <table border=1 width=40% height=80%>
+            <table id="covtable" width=40% height=80%>
                 <thead>
                     <tr>
-                        <th> Country</th>
-                        <th> Cases </th>
-                        <th> Deaths</th>
-                        <th> Revoveries</th>
+                        <th onclick="sortTable(0)"> Country</th>
+                        <th onclick="sortTableNumerically(1)"> Cases </th>
+                        <th onclick="sortTableNumerically(2)"> Deaths</th>
+                        <th onclick="sortTableNumerically(3)"> Recoveries</th>
                 <tbody id="tabledata"> 
 <!--
             <div id="apidata"> -->
             <br>
-            Source: <a href=https://thevirustracker.com/api> Coronavirus Tracker API </a>        
+            Source: <a href=https://thevirustracker.com/api> Coronavirus Tracker API </a> 
