@@ -19,28 +19,29 @@ import Yesod.Form.Jquery
 
 import Form.Bootstrap3
 
-data QuizData = QuizData {
-    name                :: Text,
-    age                 :: Int,
-    living              :: Bool,
-    care                :: Bool,
-    work                :: Bool,
-    smoke               :: Bool,
-    pregnancy           :: Bool,
-    conf                :: Bool,
-    fever               :: Bool,
-    fever4              :: Bool,
-    symptoms            :: Symptoms,
-    breath              :: Bool,
-    day                 :: Maybe Day,
-    lung                :: Bool,
-    diabetes            :: Bool,
-    heart               :: Bool,
-    obesity             :: Bool,
-    steroids            :: Bool,
-    immunosuppressants  :: Bool,
-    flu                 :: Bool
+data QuizData = QuizData 
+    { name                :: Text
+    , age                 :: Int
+    ,living               :: Bool
+    , care                :: Bool
+    , work                :: Bool
+    , smoke               :: Bool
+    , pregnancy           :: Bool
+    , conf                :: Bool
+    , fever               :: Bool
+    , fever4              :: Bool
+    , symptoms            :: Symptoms
+    , breath              :: Bool
+    , day                 :: Maybe Day
+    , lung                :: Bool
+    , diabetes            :: Bool
+    , heart               :: Bool
+    , obesity             :: Bool
+    , steroids            :: Bool
+    , immunosuppressants  :: Bool
+    , flu                 :: Bool
     }
+    deriving Show
 
 
 -- The datatype we wish to receive from the form
