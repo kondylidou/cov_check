@@ -105,11 +105,6 @@ personForm = renderBootstrap hConfig $ Person
     <*> areq intField (bootstrapFieldHelper hConfig "Age" (Just "0")) Nothing
     <*> areq textField (bootstrapFieldHelper hConfig "Email" (Just "Person email")) Nothing
 
-questionForm :: Html -> MForm Handler (FormResult Questions, Widget)
-questionForm = renderBootstrap largeFormConfig $ Questions
-    <$> areq boolField (bootstrapFieldHelper iConfig 
-    "At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty?" (Just "Some text content")) Nothing
-
 quizDataForm :: Html -> MForm Handler (FormResult QuizData, Widget)
 quizDataForm = renderBootstrap largeFormConfig $ QuizData
     <$> areq textField (bootstrapFieldHelper hConfig "What is your name?" (Just "Some name")) Nothing
@@ -178,14 +173,28 @@ personForm = renderDivs $ Person
 -- The GET handler displays the form
 getQuizR :: Handler Html
 getQuizR = do
-    (basicWidget, enctype) <- generateFormPost personForm
+    --(basicWidget, enctype) <- generateFormPost personForm
     --(inlineWidget, enctype) <- generateFormPost personIForm
     --(horizontalWidget, enctype) <- generateFormPost personHForm
     (quizWidget, enctype) <- generateFormPost quizDataForm
-    (questionWidget, enctype) <- generateFormPost questionForm
     defaultLayout $ do
         addStylesheetRemote "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
         $(widgetFileReload def "Quiz")
+
+
+postQuizR :: Handler Html
+postQuizR = do
+  ((result, quizWidget), enctype) <- runFormPost $ quizDataForm
+  case result of
+    FormSuccess formData -> do
+      -- This is our success case branch
+      setMessage "Form submitted successfully"
+      return ()
+    _ ->
+      return ()
+  defaultLayout $ do
+    setTitle "Form processing sample"
+    $(widgetFile "quiz")
 
     -- Generate the form to be displayed
     {--(widget, enctype) <- generateFormPost personForm 
