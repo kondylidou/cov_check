@@ -18,7 +18,6 @@ import Yesod.Form.Jquery
 
 import Form.Bootstrap3
 
-type Unsigned a = Word
 
 data QuizData = QuizData {
     name                :: Text, 
@@ -44,6 +43,7 @@ data QuizData = QuizData {
     immunosuppressants  :: Bool,
     flu                 :: Bool
     }
+    deriving Show
 
 
 -- The datatype we wish to receive from the form
@@ -138,6 +138,21 @@ getQuizR = do
     defaultLayout $ do
         --addStylesheetRemote "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
         $(widgetFileReload def "Quiz")
+
+
+postQuizR :: Handler Html
+postQuizR = do
+  ((result, quizWidget), enctype) <- runFormPost $ quizDataForm
+  case result of
+    FormSuccess formData -> do
+      -- This is our success case branch
+      setMessage "Form submitted successfully"
+      return ()
+    _ ->
+      return ()
+  defaultLayout $ do
+    setTitle "Form processing sample"
+    $(widgetFile "quiz")
 
     -- Generate the form to be displayed
     {--(widget, enctype) <- generateFormPost personForm 

@@ -2,9 +2,7 @@
 <div .container>
     <div .jumbotron>
         <h2> <center> Take the quiz here
-
         <div .container>
             <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
                 ^{quizWidget}
-
 

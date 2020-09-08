@@ -1,0 +1,9 @@
+table, thead, tbody, tr, td, th {
+  border: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  width: 40%
+  height: 80%
+}
+tr:hover {background-color: #ddd;}
+tr:nth-child(even) {background-color: #a3c4c7;}
