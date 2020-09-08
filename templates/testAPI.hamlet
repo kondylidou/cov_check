@@ -2,14 +2,15 @@
     <h> This is a test site for API stuff. At the moment it displays countries with cases, deaths and recoveries in a table (it is less ugly now). <br>
         To sort the columns just click on that columns header.
         <p> This is the data: <br>
-            <table id="covtable" width=40% height=80%>
-                <thead>
-                    <tr>
-                        <th onclick="sortTable(0)"> Country</th>
-                        <th onclick="sortTableNumerically(1)"> Cases </th>
-                        <th onclick="sortTableNumerically(2)"> Deaths</th>
-                        <th onclick="sortTableNumerically(3)"> Recoveries</th>
-                <tbody id="tabledata"> 
+            <center>
+                <table id="covtable" width=100% height=60%>
+                    <thead>
+                        <tr>
+                            <th onclick="sortTable(0)"> Country</th>
+                            <th onclick="sortTableNumerically(1)"> Cases </th>
+                            <th onclick="sortTableNumerically(2)"> Deaths</th>
+                            <th onclick="sortTableNumerically(3)"> Recoveries</th>
+                    <tbody id="tabledata"> 
 <!--
             <div id="apidata"> -->
             <br>

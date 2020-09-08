@@ -69,7 +69,7 @@ data Symptoms = Symptoms
 hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 2), submit = "Create user" }
 iConfig = BootstrapFormConfig { form = BootstrapInlineForm, submit = "Create user"}
 bConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Create user" }
---largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Complete" }
+-- largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Complete" }
 largeFormConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Complete" }
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
@@ -147,7 +147,7 @@ postQuizR = do
     FormSuccess formData -> do
       -- This is our success case branch
       setMessage "Form submitted successfully"
-      return ()
+      return () 
     _ ->
       return ()
   defaultLayout $ do

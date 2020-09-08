@@ -69,21 +69,25 @@ renderBootstrap formConfig aform fragment = do
                         \#{fragment}
                         $forall view <- views
                           <div .form-group :fvRequired view:.required :not $ fvRequired view:.optional :has $ fvErrors view:.error>
-                            $case (form formConfig)
-                              $of BootstrapBasicForm
+                          $case (form formConfig)
+                            $of BootstrapBasicForm
+                              <li .list-group-item>
                                 <label for=#{fvId view}>#{fvLabel view}
                                 ^{fvInput view}
                                 ^{helpWidget view}
-                              $of BootstrapInlineForm
-                                <label .sr-only for=#{fvId view}>#{fvLabel view}
-                                ^{fvInput view}
-                                ^{helpWidget view}
-                              $of BootstrapHorizontalForm containerOffset containerClass labelClass
+                                <ul class="pager">
+                                <li class="previous"><a href="#">Previous</a></li>
+                                <li class="next"><a href="#">Next</a></li>
+                            $of BootstrapInlineForm
+                              <label .sr-only for=#{fvId view}>#{fvLabel view}
+                              ^{fvInput view}
+                              ^{helpWidget view}
+                            $of BootstrapHorizontalForm containerOffset containerClass labelClass
+                              <li .list-group-item>
                                 <label .control-label .#{labelClass} for=#{fvId view}>#{fvLabel view}
                                 <div .#{containerClass}>
-                                  ^{fvInput view}
+                                    ^{fvInput view}
                                 ^{helpWidget view}
-
                         ^{submitWidget $ formConfig}
                 |]
     return (res, widget)
@@ -101,3 +105,6 @@ helpWidget view = [whamlet|
     $maybe err <- fvErrors view
       <span .help-block>#{err}
 |]
+
+
+-- https://stackoverflow.com/questions/45597829/bootstrap-4-navtabs-next-previous-not-working
