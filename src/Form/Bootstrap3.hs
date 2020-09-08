@@ -72,12 +72,9 @@ renderBootstrap formConfig aform fragment = do
                           $case (form formConfig)
                             $of BootstrapBasicForm
                               <li .list-group-item>
-                                <label for=#{fvId view}>#{fvLabel view}
-                                ^{fvInput view}
-                                ^{helpWidget view}
-                                <ul class="pager">
-                                <li class="previous"><a href="#">Previous</a></li>
-                                <li class="next"><a href="#">Next</a></li>
+                               <label for=#{fvId view}>#{fvLabel view}
+                               ^{fvInput view}
+                               ^{helpWidget view}
                             $of BootstrapInlineForm
                               <label .sr-only for=#{fvId view}>#{fvLabel view}
                               ^{fvInput view}
@@ -97,7 +94,7 @@ submitWidget (BootstrapFormConfig (BootstrapHorizontalForm containerOffset conta
     <div .#{toOffset containerOffset} .#{containerClass}>
       <button type=submit .btn .btn-default>#{submit}
 |]
-submitWidget (BootstrapFormConfig _ submit) = [whamlet|<button type=submit .btn .btn-default>#{submit}|]
+submitWidget (BootstrapFormConfig _ submit) = [whamlet|<button type=submit .btn .btn-primary>#{submit}|]
 
 helpWidget view = [whamlet|
     $maybe tt <- fvTooltip view

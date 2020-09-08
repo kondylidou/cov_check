@@ -1,8 +1,11 @@
-
+<div .navbar>
+    <div .container>
+        <div .row>
+            <h1 .header>
+            <center> <h1> Take the Quiz here!
+                
 <div .container>
     <div .jumbotron>
-        <h2> <center> Take the quiz here
-        <div .container>
-            <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
-                ^{quizWidget}
+        <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
+            ^{quizWidget}
 
