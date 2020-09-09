@@ -1,8 +1,101 @@
-
-<div .container>
+<div .jumbotron>
+    <h2> <center> Take the quiz here
     <div .jumbotron>
-        <h2> <center> Take the quiz here
         <div .container>
-            <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
+            <form .form-horizontal method=post action=@{QuizR} enctype=#{enctype}>
                 ^{quizWidget}
+    <div .jumbotron>
+        <div .container>
+            $maybe (QuizData nam sur em age liv car wor smo pre con fe fe4 chi ach los tir cou nos diar thr head bre lun dia hea obe ste imm flu) <- submission
+                <p>The result is:
+                Name: <em>#{nam}</em>
+                <br>Surname: <em>#{sur}</em>
+                Email: <em>#{em}</em>
+                <br>Age: <em>#{age}</em>
+                $if liv
+                    Are you living alone? Yes
+                $else
+                    Are you living alone? No
+                $if car
+                    <br>At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty? Yes
+                $else
+                    <br>At least once a week, do you privately care for people with age-related conditions, chronic illnesses, or frailty? No
+                $if wor
+                    Do you work in the medical field or in a community facility? Yes
+                $else
+                    Do you work in the medical field or in a community facility? No
+                $if smo
+                    <br>Do you smoke? Yes
+                $else
+                    <br>Do you smoke? No
+                $if pre
+                    Are you pregnant? Yes
+                $else
+                    Are you pregnant? No
+                $if con
+                    <br>Have you had close contact with a confirmed case? Yes
+                $else
+                    <br>Have you had close contact with a confirmed case? No
+
+                <br><p>Here is a list of your symptoms:
+                    <ul>
+                    $if fe
+                        <li>Fever (over 38°C) in the past 24 hours
+                    $if fe4
+                        <li>Fever (over 38°C) in the past 4 days
+                    $if chi
+                        <li>Chills
+                    $if ach
+                        <li>Body aches
+                    $if los
+                        <li>Loss of taste or smell
+                    $if tir
+                        <li>Feeling tired or weak
+                    $if cou
+                        <li>Persistent cough
+                    $if nos
+                        <li>Runny nose
+                    $if diar
+                        <li>Diarrhea
+                    $if thr
+                        <li>Sore throat
+                    $if head
+                        <li>Headache
+                    $if bre
+                        <li>In the past 24 hours you felt that you were more quickly out of breath than usual
+                   
+                $if lun
+                    Have you been diagnosed with chronic lung disease by a doctor? Yes
+                $else
+                    Have you been diagnosed with chronic lung disease by a doctor? No
+                $if dia
+                    <br>Have you been diagnosed with diabetes by a doctor? Yes
+                $else
+                    <br>Have you been diagnosed with diabetes by a doctor? No
+                $if hea
+                    Have you been diagnosed with heart disease by a doctor? Yes
+                $else
+                    Have you been diagnosed with heart disease by a doctor? No
+                $if obe
+                    <br>Have you been diagnosed with obesity by a doctor? Yes
+                $else
+                    <br>Have you been diagnosed with obesity by a doctor? No
+                $if ste
+                    Are you currently taking steroids? Yes
+                $else
+                    Are you currently taking steroids? No
+                $if imm
+                    <br>Are you currently taking immunosuppressants? Yes
+                $else
+                    <br>Are you currently taking immunosuppressants? No
+                $if flu
+                    Have you been vaccinated against flu between October 2019 and today? Yes
+                $else
+                    Have you been vaccinated against flu between October 2019 and today? No
+
+
+            $nothing
+                Take the quiz...
+
+
 
