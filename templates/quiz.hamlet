@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div .jumbotron>
     <h2> <center> Take the quiz here
     <div .jumbotron>
@@ -97,18 +96,4 @@
 
             $nothing
                 Take the quiz...
-
-
-=======
-<div .navbar>
-    <div .container>
-        <div .row>
-            <h1 .header>
-            <center> <h1> Take the Quiz here!
-                
-<div .container>
-    <div .jumbotron>
-        <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
-            ^{quizWidget}
->>>>>>> b60b2bb2c8abb6ff23d294e80a74e382fe179f1f
 
