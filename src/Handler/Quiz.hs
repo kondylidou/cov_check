@@ -61,7 +61,7 @@ instance FromJSON QuizData
 hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 2), submit = "Create user" }
 iConfig = BootstrapFormConfig { form = BootstrapInlineForm, submit = "Create user"}
 bConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Create user" }
---largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Complete" }
+-- largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Complete" }
 largeFormConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Complete" }
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
@@ -113,6 +113,7 @@ getQuizR = do
         setTitle "Quiz"
         $(widgetFileReload def "Quiz")
 
+-- The POST handler processes the form
 postQuizR :: Handler Html
 postQuizR = do
     ((result, quizWidget), enctype) <- runFormPost quizDataForm
@@ -125,5 +126,33 @@ postQuizR = do
         setTitle "Welcome To Yesod!"
         $(widgetFile "quiz")
 
-
-
+    -- Generate the form to be displayed
+    {--(widget, enctype) <- generateFormPost personForm 
+    defaultLayout
+        [whamlet|
+            <p>
+                The widget generated contains only the contents
+                of the form, not the form tag itself. So...
+            <form method=post action=@{PersonR} enctype=#{enctype}>
+                ^{widget}  
+            <form method=post action=@{PersonR} enctype=#{enctype}>
+                ^{widget}   
+                <p>It also doesn't include the submit button.
+                <button>Submit
+        |] 
+--}
+-- The POST handler processes the form. If it is successful, it displays the
+-- parsed person. Otherwise, it displays the form again with error messages.
+  {--postPersonR :: Handler Html
+postPersonR = do
+    ((result, widget), enctype) <- runFormPost personForm
+    case result of
+        FormSuccess person -> defaultLayout [whamlet|<p>#{show person}|]
+        _ -> defaultLayout
+            [whamlet|
+                <p>Invalid input, let's try again.
+                <form method=post action=@{PersonR} enctype=#{enctype}>
+                    ^{widget}
+                    <button>Submit
+            |]
+--}
