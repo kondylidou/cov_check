@@ -5,10 +5,10 @@
             <table id="covtable" width=40% height=80%>
                 <thead>
                     <tr>
-                        <th onclick="sortTable(0)"> Country</th>
-                        <th onclick="sortTableNumerically(1)"> Cases </th>
-                        <th onclick="sortTableNumerically(2)"> Deaths</th>
-                        <th onclick="sortTableNumerically(3)"> Recoveries</th>
+                        <th onclick="sortCountries(0)"> Country</th>
+                        <th onclick="sortNumbers(1)"> Cases </th>
+                        <th onclick="sortNumbers(2)"> Deaths</th>
+                        <th onclick="sortNumbers(3)"> Recoveries</th>
                 <tbody id="tabledata"> 
 <!--
             <div id="apidata"> -->
