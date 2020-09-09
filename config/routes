@@ -9,7 +9,7 @@
 
 / HomeR GET POST
 
-/quiz QuizR GET 
+/quiz QuizR GET POST
 
 /comments CommentR POST
 

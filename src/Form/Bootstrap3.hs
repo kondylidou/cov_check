@@ -69,21 +69,22 @@ renderBootstrap formConfig aform fragment = do
                         \#{fragment}
                         $forall view <- views
                           <div .form-group :fvRequired view:.required :not $ fvRequired view:.optional :has $ fvErrors view:.error>
-                            $case (form formConfig)
-                              $of BootstrapBasicForm
-                                <label for=#{fvId view}>#{fvLabel view}
-                                ^{fvInput view}
-                                ^{helpWidget view}
-                              $of BootstrapInlineForm
-                                <label .sr-only for=#{fvId view}>#{fvLabel view}
-                                ^{fvInput view}
-                                ^{helpWidget view}
-                              $of BootstrapHorizontalForm containerOffset containerClass labelClass
+                          $case (form formConfig)
+                            $of BootstrapBasicForm
+                              <li .list-group-item>
+                               <label for=#{fvId view}>#{fvLabel view}
+                               ^{fvInput view}
+                               ^{helpWidget view}
+                            $of BootstrapInlineForm
+                              <label .sr-only for=#{fvId view}>#{fvLabel view}
+                              ^{fvInput view}
+                              ^{helpWidget view}
+                            $of BootstrapHorizontalForm containerOffset containerClass labelClass
+                              <li .list-group-item>
                                 <label .control-label .#{labelClass} for=#{fvId view}>#{fvLabel view}
                                 <div .#{containerClass}>
-                                  ^{fvInput view}
+                                    ^{fvInput view}
                                 ^{helpWidget view}
-
                         ^{submitWidget $ formConfig}
                 |]
     return (res, widget)
@@ -93,7 +94,7 @@ submitWidget (BootstrapFormConfig (BootstrapHorizontalForm containerOffset conta
     <div .#{toOffset containerOffset} .#{containerClass}>
       <button type=submit .btn .btn-default>#{submit}
 |]
-submitWidget (BootstrapFormConfig _ submit) = [whamlet|<button type=submit .btn .btn-default>#{submit}|]
+submitWidget (BootstrapFormConfig _ submit) = [whamlet|<button type=submit .btn .btn-primary>#{submit}|]
 
 helpWidget view = [whamlet|
     $maybe tt <- fvTooltip view
@@ -101,3 +102,6 @@ helpWidget view = [whamlet|
     $maybe err <- fvErrors view
       <span .help-block>#{err}
 |]
+
+
+-- https://stackoverflow.com/questions/45597829/bootstrap-4-navtabs-next-previous-not-working

@@ -1,19 +1,11 @@
-
+<div .navbar>
+    <div .container>
+        <div .row>
+            <h1 .header>
+            <center> <h1> Take the Quiz here!
+                
 <div .container>
     <div .jumbotron>
-        <h2>  Please fill some personal Informations
-        <div .container>
-            <form method=get action=@{QuizR} enctype=#{enctype}>
-                ^{basicWidget}
+        <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
+            ^{quizWidget}
 
-    <div .jumbotron>
-        <h2> Take the quiz here
-        <div .container>
-            <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
-                ^{quizWidget}
-    
-    <div .jumbotron>
-        <h2> Take the quiz here
-        <div .container>
-            <form .form-horizontal method=get action=@{QuizR} enctype=#{enctype}>
-                ^{questionWidget}
