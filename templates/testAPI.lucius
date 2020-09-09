@@ -5,13 +5,20 @@
 }
 table, thead, tbody, tr, td, th {
   border: 1px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   width: 100%
   height: 60%
 }
 #firstcolumn {
     background-color: #a3c4c7;
+}
+#firstcolumn th {
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+#tabledata td{
+    border-left: 1px solid black;
+    border-right: 1px solid black;    
 }
 tr:hover {background-color: #ddd;}
 /* tr:nth-child(even) {background-color: #a3c4c7;} */

@@ -2,7 +2,7 @@ $.ajax({
   url: 'https://api.thevirustracker.com/free-api?countryTotals=ALL',
   dataType: 'json',
   success: function(data) {
-//    console.log(data);
+    console.log(data);
     var shownText = "";
     var shownTable = "";
     var countryData = data.countryitems[0];
