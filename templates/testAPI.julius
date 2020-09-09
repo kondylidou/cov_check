@@ -31,44 +31,6 @@ $.ajax({
 //    document.getElementById('apidata').innerHTML = shownText;
   }
 });
-function sort(n){
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table=document.getElementById("covtable");
-    switching=true;
-    dir="desc"
-    while(switching){
-        switching=false;
-        rows=table.rows;
-        for(i=1; i<(rows.length -1); i++){
-            shoudSwitch = false;
-            x= rows[i].getElementsByTagName("TD")[n];
-            y= rows[i+1].getElementsByTagName("TD")[n];
-            if(dir =="asc"){
-                if(Number(x.innerHTML.toLowerCase()) > Number(y.innerHTML.toLowerCase())){
-                    shouldSwitch = true;
-                    break;
-                }
-            } else if(dir == "desc"){
-                if(Number(x.innerHTML.toLowerCase()) < Number(y.innerHTML.toLowerCase())){
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-            if(shouldSwitch){
-                console.log(n);
-                rows[i].parentNode.insertBefore(rows[i+1], rows[i]);
-                switching=true;
-                switchcount ++;
-
-            } else {
-                if(switchcount == 0 && dir == "desc"){
-                    dir = "asc";
-                    switching = true;
-                }
-            }
-        }
-    } 
-}
 function sortCountries(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById("covtable");
@@ -140,4 +102,23 @@ function sortNumbers(n) {
       }
     }
   }
+}
+
+function filter(){
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("covtable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 }

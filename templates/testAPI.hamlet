@@ -1,16 +1,17 @@
 <div .container>
     <h> This is a test site for API stuff. At the moment it displays countries with cases, deaths and recoveries in a table (it is less ugly now). <br>
-        To sort the columns just click on that columns header.
+        To sort by a specific column just click on that columns header.
         <p> This is the data: <br>
+        <input type="text" id="searchbar" onkeyup="filter()" placeholder="Search for country..">
             <center>
                 <table id="covtable" width=100% height=60%>
                     <thead>
-                        <tr>
+                        <tr id="firstcolumn">
                             <th onclick="sortCountries(0)"> Country</th>
                             <th onclick="sortNumbers(1)"> Cases </th>
                             <th onclick="sortNumbers(2)"> Deaths</th>
                             <th onclick="sortNumbers(3)"> Recoveries</th>
-                    <tbody id="tabledata"> 
+                    <tbody id="tabledata">
 <!--
             <div id="apidata"> -->
             <br>
