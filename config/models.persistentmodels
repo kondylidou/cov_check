@@ -1,10 +1,20 @@
 -- By default this file is used by `persistFileWith` in Model.hs (which is imported by Foundation.hs)
 -- Syntax for this file here: https://github.com/yesodweb/persistent/blob/master/docs/Persistent-entity-syntax.md
-Countrydata json
-    Id Text sql=country
+Coviddata json
+    country Text
+    last_update Text
     cases Int
+    deaths Int
     recovered Int
-    deceased Int
+    deriving Show
+Country json
+    name Text
+    alpha2 Text
+    alpha3 Text
+    numeric Text
+    latitude Double
+    longitude Double
+    deriving Show
 User
     ident Text
     password Text Maybe
