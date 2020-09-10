@@ -119,40 +119,21 @@ postQuizR = do
     ((result, quizWidget), enctype) <- runFormPost quizDataForm
     let handlerName = "postQuizR" :: Text
         submission = case result of
-            FormSuccess res -> Just res
+            FormSuccess res ->  case processData res of 
+                True -> Just res
+                _ -> Nothing
             _ -> Nothing
 
     defaultLayout $ do
-        setTitle "Welcome To Yesod!"
+        setTitle "Quiz Result"
         $(widgetFile "quiz")
 
-    -- Generate the form to be displayed
-    {--(widget, enctype) <- generateFormPost personForm 
-    defaultLayout
-        [whamlet|
-            <p>
-                The widget generated contains only the contents
-                of the form, not the form tag itself. So...
-            <form method=post action=@{PersonR} enctype=#{enctype}>
-                ^{widget}  
-            <form method=post action=@{PersonR} enctype=#{enctype}>
-                ^{widget}   
-                <p>It also doesn't include the submit button.
-                <button>Submit
-        |] 
---}
--- The POST handler processes the form. If it is successful, it displays the
--- parsed person. Otherwise, it displays the form again with error messages.
-  {--postPersonR :: Handler Html
-postPersonR = do
-    ((result, widget), enctype) <- runFormPost personForm
-    case result of
-        FormSuccess person -> defaultLayout [whamlet|<p>#{show person}|]
-        _ -> defaultLayout
-            [whamlet|
-                <p>Invalid input, let's try again.
-                <form method=post action=@{PersonR} enctype=#{enctype}>
-                    ^{widget}
-                    <button>Submit
-            |]
---}
+processData :: QuizData -> Bool
+processData quizdata 
+    | fever quizdata == True = True
+    | fever4 quizdata == True = True
+    | otherwise = False
+
+
+
+

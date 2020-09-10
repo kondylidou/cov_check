@@ -4,7 +4,7 @@
         <div .container>
             <form .form-horizontal method=post action=@{QuizR} enctype=#{enctype}>
                 ^{quizWidget}
-    <div .jumbotron>
+    <hr>
         <div .container>
             $maybe (QuizData nam sur em age liv car wor smo pre con fe fe4 chi ach los tir cou nos diar thr head bre lun dia hea obe ste imm flu) <- submission
                 <p>The result is:
@@ -93,7 +93,5 @@
                 $else
                     Have you been vaccinated against flu between October 2019 and today? No
 
-
             $nothing
-                Take the quiz...
-
+                <center><strong>You are healthy or didn't take the quiz yet
