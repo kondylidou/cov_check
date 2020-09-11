@@ -9,10 +9,13 @@
 
 / HomeR GET POST
 
-/quiz QuizR GET POST
+/quiz QuizR GET 
 
 /comments CommentR POST
 
 /profile ProfileR GET
 
 /testAPI TestAPIR GET
+
+/quizResults QuizResultsR POST 
+

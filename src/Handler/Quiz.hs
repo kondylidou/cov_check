@@ -124,6 +124,8 @@ getQuizR = do
         setTitle "Quiz"
         $(widgetFileReload def "Quiz")
 
+
+{-- 
 -- The POST handler processes the form
 postQuizR :: Handler Html
 postQuizR = do
@@ -173,3 +175,4 @@ processRecord record
 
 
 
+--}
