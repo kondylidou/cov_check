@@ -6,8 +6,8 @@
                 ^{quizWidget}
     <hr>
         <div .container>
-            $maybe (QuizData nam sur em age liv car wor smo pre con fe fe4 chi ach los tir cou nos diar thr head bre lun dia hea obe ste imm flu) <- submission
-                <p>The result is:
+            $maybe (QuizData nam sur em age liv car wor smo pre con (Symptoms fe fe4 chi ach los tir cou nos diar thr head bre) (Record lun dia hea obe ste imm flu)) <- submission
+                <p>The result is: You should see a doctor because either you have many symptoms or you belong to a high risk group based on your medical record!
                 Name: <em>#{nam}</em>
                 <br>Surname: <em>#{sur}</em>
                 Email: <em>#{em}</em>
@@ -64,6 +64,7 @@
                     $if bre
                         <li>In the past 24 hours you felt that you were more quickly out of breath than usual
                    
+                <p>Medical Record:
                 $if lun
                     Have you been diagnosed with chronic lung disease by a doctor? Yes
                 $else
