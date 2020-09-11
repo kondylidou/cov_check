@@ -16,3 +16,5 @@
 /profile ProfileR GET
 
 /testAPI TestAPIR GET
+
+/testColonnadeAPI TestColonnadeAPIR GET
