@@ -1,14 +1,14 @@
 -- By default this file is used by `persistFileWith` in Model.hs (which is imported by Foundation.hs)
 -- Syntax for this file here: https://github.com/yesodweb/persistent/blob/master/docs/Persistent-entity-syntax.md
 Coviddata json
-    country Text
+    country Text constraint=primary_key
     last_update Text
     cases Int
     deaths Int
     recovered Int
     deriving Show
 Country json
-    name Text
+    name Text constraint=primary_key
     alpha2 Text
     alpha3 Text
     numeric Text

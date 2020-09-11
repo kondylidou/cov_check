@@ -9,23 +9,53 @@ module Handler.TestAPI where
 
 import Import
 import Text.Julius()
+import Model (Coviddata)
 --for parsing
 import Network.HTTP.Conduit (simpleHttp)
 import Data.Aeson
 import qualified Data.ByteString.Lazy.Internal as B
 --for database
 import Database.Persist
-import Database.Persist.Sqlite
 import Database.Persist.TH
-
+import Database.Persist.Sqlite
+--for table
+import Yesod.Table (Table)
+import qualified Yesod.Table as Table
+--for ugly programming by me
+import System.IO.Unsafe (unsafePerformIO)
 
 getTestAPIR :: Handler Html
-getTestAPIR = do
-    defaultLayout $ do
-        setTitle "API Testpage"
-        $(widgetFile "testAPI")
---        liftIO $ testRun
+getTestAPIR = unsafePerformIO testReader
+{--    cov <- (eitherDecode <$> allCovidDataJSON) :: IO (Either String [Coviddata])
+    case cov of
+        Left err -> undefined
+        Right d -> defaultLayout $ Table.buildBootstrap covidTable d --}
+--        defaultLayout $ do
+--            setTitle "API Testpage"
+--            $(widgetFile "testAPI")
+--            liftIO $ testRun
 
+covidTable :: Table App Coviddata
+covidTable = mempty
+    <> Table.text "Country"     coviddataCountry
+    <> Table.int "Cases"        coviddataCases
+    <> Table.int "Deaths"       coviddataDeaths
+    <> Table.int "Recoveries"   coviddataRecovered
+
+testReader :: IO(HandlerFor App Html)
+testReader = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    countries <- selectList [] [Desc CoviddataCases]
+    return $ testHandler $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
+
+resetDB :: IO()
+resetDB = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    deleteWhere [CoviddataCases >=. 0]
+    deleteWhere [CountryNumeric >=. ""]
+    return ()
+
+testHandler c = defaultLayout $ Table.buildBootstrap covidTable c
 -- Here I want to get the data from the API into the Database
 covidDataURL :: String
 covidDataURL = "https://covid19-api.org/api/status"
@@ -46,26 +76,40 @@ testRun = do
 
     case cov of
         Left err -> print err
-        Right d -> testInsert d
+        Right d ->  testInsert d
+    
+    testSelect
 
     case countries of
         Left err -> print err
-        Right d -> testInsert' d
+        Right d ->  testInsert' d
+    
+    testSelect'
 
 testInsert :: [Coviddata] -> IO()
-testInsert covject = runSqlite ":memory:" $ do
+testInsert covject = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
 
     ids <- forM covject insert
+    print ids
 
-    testSelect <- selectList [CoviddataCountry ==. "AF"] []
-    print testSelect
+testSelect :: IO()
+testSelect = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+
+    selection <- selectList [CoviddataCountry ==. "AF"] []
+    print selection
 
 testInsert' :: [Country] -> IO()
-testInsert' countject = runSqlite ":memory:" $ do
+testInsert' countject = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
 
     ids <- forM countject insert
+    print ids
 
-    testSelect <- selectList [CountryName ==. "Afghanistan"] []
-    print testSelect
+testSelect' :: IO()
+testSelect' = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+
+    selection <- selectList [CountryName ==. "Afghanistan"] []
+    print selection
