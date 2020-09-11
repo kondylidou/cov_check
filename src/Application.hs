@@ -45,6 +45,7 @@ import Handler.Home
 import Handler.Comment
 import Handler.Profile
 import Handler.Quiz
+import Handler.QuizResults
 import Handler.TestAPI
 import Handler.TestColonnadeAPI
 
