@@ -5,7 +5,7 @@
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE DeriveGeneric #-}
-module Handler.TestAPI where
+module Handler.TestYesodTableAPI where
 
 
 import Import
@@ -26,15 +26,7 @@ import qualified Yesod.Table as Table
 import System.IO.Unsafe (unsafePerformIO)
 
 getTestAPIR :: Handler Html
-getTestAPIR = do
-{--    cov <- (eitherDecode <$> allCovidDataJSON) :: IO (Either String [Coviddata])
-    case cov of
-        Left err -> undefined
-        Right d -> defaultLayout $ Table.buildBootstrap covidTable d --}
-        defaultLayout $ do
-            setTitle "API Testpage"
-            $(widgetFile "testAPI")
---            liftIO $ testRun
+getTestAPIR = unsafePerformIO testReader
 
 covidTable :: Table App Coviddata
 covidTable = mempty

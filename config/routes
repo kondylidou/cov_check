@@ -17,6 +17,8 @@
 
 /testAPI TestAPIR GET
 
+/testYesodTableAPI TestYesodTableAPIR GET
+
 /testColonnadeAPI TestColonnadeAPIR GET
 
 /quizResults QuizResultsR POST 
