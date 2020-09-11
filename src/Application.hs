@@ -46,6 +46,7 @@ import Handler.Comment
 import Handler.Profile
 import Handler.Quiz
 import Handler.QuizResults
+import Handler.TestYesodTableAPI
 import Handler.TestAPI
 import Handler.TestColonnadeAPI
 

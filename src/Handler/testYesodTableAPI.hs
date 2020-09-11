@@ -25,8 +25,8 @@ import qualified Yesod.Table as Table
 --for ugly programming by me
 import System.IO.Unsafe (unsafePerformIO)
 
-getTestAPIR :: Handler Html
-getTestAPIR = unsafePerformIO testReader
+getTestYesodTableAPIR :: Handler Html
+getTestYesodTableAPIR = unsafePerformIO testReader
 
 covidTable :: Table App Coviddata
 covidTable = mempty
