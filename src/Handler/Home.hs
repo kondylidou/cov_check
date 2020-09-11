@@ -9,6 +9,16 @@ import Import
 import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
 import Text.Julius (RawJS (..))
 
+--for parsing
+import Network.HTTP.Conduit (simpleHttp)
+import Data.Aeson
+import qualified Data.ByteString.Lazy.Internal as B
+--for database
+import Database.Persist
+import Database.Persist.Sqlite
+import Database.Persist.TH
+
+
 
 -- Define our data that will be used for creating the form.
 data FileForm = FileForm
@@ -33,7 +43,7 @@ getHomeR = do
     defaultLayout $ do
         let (commentFormId, commentTextareaId, commentListId) = commentIds
         aDomId <- newIdent
-        setTitle "Welcome To Yesod!"
+        setTitle "covcheck"
         $(widgetFile "homepage")
 
 postHomeR :: Handler Html
@@ -72,3 +82,4 @@ commentIds = ("js-commentForm", "js-createCommentTextarea", "js-commentList")
 
 getAllComments :: DB [Entity Comment]
 getAllComments = selectList [] [Asc CommentId]
+

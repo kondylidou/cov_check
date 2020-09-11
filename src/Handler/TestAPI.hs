@@ -7,6 +7,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 module Handler.TestAPI where
 
+
 import Import
 import Text.Julius()
 --for parsing
@@ -69,3 +70,4 @@ testInsert' countject = runSqlite ":memory:" $ do
 
     testSelect <- selectList [CountryName ==. "Afghanistan"] []
     print testSelect
+
