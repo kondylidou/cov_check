@@ -6,10 +6,23 @@
              Global statistics and Covid online quiz
             <br> <br> <br> <br>
 
-            <a href=@{QuizR} .btn.btn-info.btn-lg>
-                Take the quiz
+            
+    <div .container>
+        <div .jumbotron>
+            <h2> <center> <p style="color:#000000";>Take the quiz</p>
+            <div .jumbotron>
+                    <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
 
-            <a href=@{TestAPIR} .btn.btn-info.btn-lg> Check the Stats
+    <div .container>
+        <div .jumbotron>
+            <h2> <center> <p style="color:#000000";>Check the stats</p>
+            <div .jumbotron>
+                    <center>
+                        <a href=@{TestAPIR} id="cases" .btn.btn-info.btn-lg>  Stats
 
-            <br> <br> <br> <br>
-
+                       
+            <!--
+                        <div id="apidata"> -->
+                        <br>
+                        <center>
+                        Source: <a href=https://thevirustracker.com/api> Coronavirus Tracker API </a> 
