@@ -1,0 +1,133 @@
+$.ajax({
+  url: 'https://api.covid19api.com/summary',
+  dataType: 'json',
+  success: function(data) {
+//    console.log(data);
+    var shownTable = "";
+    var global="<th> Global </th> <th id=\"g_newCases\"> " + data.Global.NewConfirmed + "<th id =\"g_cases\">" + data.Global.TotalConfirmed + "</th> <th id =\"g_newDeaths\">" + data.Global.NewDeaths + "</th> <th id =\"g_deaths\">" + data.Global.TotalDeaths + "</th> <th id =\"g_recovered\">" + data.Global.TotalRecovered + "</th>";
+    var countryData = data.Countries;
+    var countryNames = new Array(188);
+    var countryNewCases = new Array(188);
+    var countryCases = new Array(188);
+    var countryNewDeaths = new Array(188);
+    var countryDeaths = new Array(188);
+    var countryRecovered = new Array(188);
+    for(i=0; i<countryNames.length; i++){
+        countryNames[i]=countryData[i].Country;
+        countryNewCases[i]=countryData[i].NewConfirmed;
+        countryCases[i]=countryData[i].TotalConfirmed;
+        countryNewDeaths[i]=countryData[i].NewDeaths;
+        countryDeaths[i]=countryData[i].TotalDeaths;
+        countryRecovered[i]=countryData[i].TotalRecovered;
+    }    
+    for(i=0; i<countryNames.length; i++){
+        shownTable += "<tr> <td>" + countryNames[i] + "</td> <td align=right>" + countryNewCases[i] +"</td> <td align=right>" + countryCases[i] + "</td> <td align=right>" + countryNewDeaths[i] + "</td> <td align=right>" + countryDeaths[i] + "</td> <td align=right>" + countryRecovered[i] + "</td> </tr>";
+    }
+//    console.log(countryNames);
+//    console.log(countryCases);
+//    console.log(countryDeaths);
+//    console.log(countryRecovered);
+//    console.log(countryData);
+//    console.log(shownText);
+    document.getElementById('global').innerHTML = global;
+    document.getElementById('tabledata').innerHTML = shownTable;
+    document.getElementById('lastupdate').innerHTML = countryData[0].Date;
+  }
+});
+function sortCountries(n) {
+  var table, rows, switchNextTime, i, x, y, switchThisTime, direction, switchcount = 0;
+  table = document.getElementById("covtable");
+  switchNextTime = true;
+  direction = "asc";
+  //start
+  while (switchNextTime) {
+    switchNextTime = false;
+    rows = table.rows;
+    //go through all rows except header and global
+    for (i = 2; i < (rows.length - 1); i++) {
+      switchThisTime = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      //depending on direction check if this entry should get switched
+      if (direction == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+          switchThisTime = true;
+          break;
+        }
+      } else if (direction == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+          switchThisTime = true;
+          break;
+        }
+      }
+    }
+    //actual switching
+    if (switchThisTime) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switchNextTime = true;
+      switchcount ++;
+    //if no switching at all reverse direction, if there has been switching but just not this time, we are done
+    } else {
+      if (switchcount == 0 && direction == "asc") {
+        direction = "desc";
+        switchNextTime = true;
+      }
+    }
+  }
+}
+//same as sort but Numerical not alphabetical
+function sortNumbers(n) {
+  var table, rows, switchNextTime, i, x, y, switchThisTime, direction, switchcount = 0;
+  table = document.getElementById("covtable");
+  switchNextTime = true;
+  direction = "desc";
+  while (switchNextTime) {
+    switchNextTime = false;
+    rows = table.rows;
+    for (i = 2; i < (rows.length - 1); i++) {
+      switchThisTime = false;
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+      if (direction == "asc") {
+        if (Number(x.innerHTML.toLowerCase()) > Number(y.innerHTML.toLowerCase())) {
+          switchThisTime = true;
+          break;
+        }
+      } else if (direction == "desc") {
+        if (Number(x.innerHTML.toLowerCase()) < Number(y.innerHTML.toLowerCase())) {
+          switchThisTime = true;
+          break;
+        }
+      }
+    }
+    if (switchThisTime) {
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switchNextTime = true;
+      switchcount ++;
+    } else {
+      if (switchcount == 0 && direction == "desc") {
+        direction = "asc";
+        switchNextTime = true;
+      }
+    }
+  }
+}
+
+function filter(){
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("covtable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
+}

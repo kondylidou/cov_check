@@ -18,11 +18,9 @@
             <h2> <center> <p style="color:#000000";>Check the stats</p>
             <div .jumbotron>
                     <center>
-                        <a href=@{TestAPIR} id="cases" .btn.btn-info.btn-lg>  Stats
+                        <a href=@{CovidStatsR} id="cases" .btn.btn-info.btn-lg>  Stats
 
                        
-            <!--
-                        <div id="apidata"> -->
                         <br>
                         <center>
-                        Source: <a href=https://thevirustracker.com/api> Coronavirus Tracker API </a> 
+                        <span id="source">Source: <a href=https://covid19api.com/> Covid19 API </a> 
