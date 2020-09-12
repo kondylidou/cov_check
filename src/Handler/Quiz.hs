@@ -71,7 +71,7 @@ hConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 
 iConfig = BootstrapFormConfig { form = BootstrapInlineForm, submit = "Create user"}
 bConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Create user" }
 -- largeFormConfig = BootstrapFormConfig { form = BootstrapHorizontalForm (ColXs 2) (ColXs 4) (ColXs 4), submit = "Complete" }
-largeFormConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "Complete" }
+largeFormConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "complete" }
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
 

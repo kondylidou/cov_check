@@ -1,6 +1,7 @@
 .masthead,
 .navbar {
-    background-color: rgb(27, 28, 29);
+    background-color: rgb(0, 148, 64);
+
 }
 
 .navbar-default .navbar-nav > .active > a {
@@ -20,7 +21,7 @@
 }
 
 .masthead .header {
-    max-width: 700px;
+    max-width: 500px;
     margin: 0 auto;
     font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 }

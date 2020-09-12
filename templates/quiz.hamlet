@@ -1,6 +1,6 @@
 <div .jumbotron>
     <h2> <center> Take the quiz here
-    <div .jumbotron>
+    <div style="height:360px;overflow:auto;" .jumbotron>
         <div .container>
             <form .form-horizontal method=post action=@{QuizResultsR} enctype=#{enctype}>
                 ^{quizWidget}

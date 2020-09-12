@@ -3,12 +3,11 @@
         <div .row>
             <h1 .header>
                 CovCheck <br>
-             Global statistics and Covid online quiz
-            <br> <br> <br> <br>
-
-            
+            <h1> Global statistics and Covid online quiz 
+            <br> 
+         
     <div .container>
-        <div .jumbotron>
+        <div class="div-1" .jumbotron>
             <h2> <center> <p style="color:#000000";>Take the quiz</p>
             <div .jumbotron>
                     <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
@@ -24,3 +23,5 @@
                         <br>
                         <center>
                         <span id="source">Source: <a href=https://covid19api.com/> Covid19 API </a> 
+
+
