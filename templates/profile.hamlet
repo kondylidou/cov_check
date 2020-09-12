@@ -9,4 +9,4 @@
         <div .jumbotron>
                 <center>
                     <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
-                    <a href=@{TestAPIR} id="cases" .btn.btn-info.btn-lg>  Show the stats
+                    <a href=@{CovidStatsR} id="cases" .btn.btn-info.btn-lg>  Show the stats

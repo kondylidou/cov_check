@@ -1,0 +1,26 @@
+<div .container>
+    <div .jumbotron>
+        <h2> <center> Worldwide Stats about the Coronavirus
+
+        <div .jumbotron>
+            <h> To sort by a specific column just click on that columns header.
+                <p> Enter a specific country: <br>
+                <input type="text" id="searchbar" onkeyup="filter()" placeholder="Search for country..">
+
+
+            <div style="height:360px;overflow:auto;" .jumbotron>
+                        <table id="covtable" width=100% height=60%>
+                            <thead>
+                                <tr id="firstcolumn">
+                                    <th id="countries" onclick="sortCountries(0)"> Country</th>
+                                    <th id="newcases" onclick="sortNumbers(1)"> New Cases</th>
+                                    <th id="cases" onclick="sortNumbers(2)"> Total Cases</th>
+                                    <th id="newdeaths" onclick="sortNumbers(3)"> New Deaths</th>
+                                    <th id="deaths" onclick="sortNumbers(4)"> Total Deaths</th>
+                                    <th id="recoveries" onclick="sortNumbers(5)"> Recoveries</th>
+                                <tr id="global">
+                            <tbody id="tabledata">
+                    <br>
+                    <center>
+                    last updated: <span id="lastupdate"> </span> <br>
+                    Source: <a href=https://covid19api.com/> Covid19 API </a> 

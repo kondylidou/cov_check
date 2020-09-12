@@ -15,7 +15,7 @@
 
 /profile ProfileR GET
 
-/testAPI TestAPIR GET
+/covidStats CovidStatsR GET
 
 /testYesodTableAPI TestYesodTableAPIR GET
 

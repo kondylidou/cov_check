@@ -170,7 +170,7 @@ instance Yesod App where
     isAuthorized RobotsR _ = return Authorized
     isAuthorized QuizR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
-    isAuthorized TestAPIR _ = return Authorized
+    isAuthorized CovidStatsR _ = return Authorized
     isAuthorized TestYesodTableAPIR _ = return Authorized
     isAuthorized TestColonnadeAPIR _ = return Authorized
     isAuthorized QuizResultsR _ = return Authorized

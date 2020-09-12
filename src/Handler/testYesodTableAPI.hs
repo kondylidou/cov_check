@@ -25,8 +25,33 @@ import qualified Yesod.Table as Table
 --for ugly programming by me
 import System.IO.Unsafe (unsafePerformIO)
 
+data Global = Global 
+        { newConfirmed :: Int
+        , totalConfirmed :: Int
+        , newDeaths :: Int
+        , totalDeaths :: Int
+        , newRecovered :: Int
+        , totalRecovered :: Int
+        }
+        deriving (Show, Generic)
+
+instance ToJSON Global
+instance FromJSON Global
+
 getTestYesodTableAPIR :: Handler Html
-getTestYesodTableAPIR = unsafePerformIO testReader
+getTestYesodTableAPIR = do
+    liftIO $ refreshDB
+    defaultLayout $ do
+        [whamlet|
+<div .container>
+    <div .jumbotron>
+        <h2> <center> Worldwide Stats about the Coronavirus
+        <div .jumbotron>
+            ^{Table.buildBootstrap covidTable $ unsafePerformIO casesDesc}
+        Source: <a href=https://covid19-api.org/> Covid-19 API </a> 
+        |]
+--        Table.buildBootstrap covidTable $ unsafePerformIO casesDesc
+--    unsafePerformIO $ tableCasesDesc
 
 covidTable :: Table App Coviddata
 covidTable = mempty
@@ -35,10 +60,35 @@ covidTable = mempty
     <> Table.int "Deaths"       coviddataDeaths
     <> Table.int "Recoveries"   coviddataRecovered
 
-testReader :: IO(HandlerFor App Html)
-testReader = runSqlite "CovCheck.sqlite3" $ do
+covidTable2 :: Table App Coviddata2
+covidTable2 = mempty
+    <> Table.text "Country"     coviddata2Country
+    <> Table.int "Cases"        coviddata2TotalConfirmed
+    <> Table.int "Deaths"       coviddata2TotalDeaths
+    <> Table.int "Recoveries"   coviddata2TotalRecovered
+
+tableCasesDesc :: IO(HandlerFor App Html)
+tableCasesDesc = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
     countries <- selectList [] [Desc CoviddataCases]
+    return $ testHandler $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
+
+casesDesc :: IO([Coviddata])
+casesDesc = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    countries <- selectList [] [Desc CoviddataCases]
+    return $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
+
+casesDesc2 :: IO([Coviddata2])
+casesDesc2 = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    countries <- selectList [] [Desc Coviddata2TotalConfirmed]
+    return $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
+
+--tableGeneralized :: Text -> SelectOpt Coviddata -> IO(HandlerFor App Html)
+tableGeneralized orientation content = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    countries <- selectList [] [(orientation) (content)]
     return $ testHandler $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
 
 resetDB :: IO()
@@ -48,10 +98,21 @@ resetDB = runSqlite "CovCheck.sqlite3" $ do
     deleteWhere [CountryNumeric >=. ""]
     return ()
 
+resetDB2 :: IO()
+resetDB2 = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    deleteWhere [Coviddata2TotalConfirmed >=. 0]
+    deleteWhere [CountryNumeric >=. ""]
+    return ()
+
 testHandler c = defaultLayout $ Table.buildBootstrap covidTable c
+
 -- Here I want to get the data from the API into the Database
 covidDataURL :: String
 covidDataURL = "https://covid19-api.org/api/status"
+
+covidData2URL :: String
+covidData2URL= "https://api.covid19api.com/summary"
 
 countryDataURL :: String
 countryDataURL = "https://covid19-api.org/api/countries"
@@ -59,50 +120,65 @@ countryDataURL = "https://covid19-api.org/api/countries"
 allCovidDataJSON :: IO B.ByteString
 allCovidDataJSON = simpleHttp $ covidDataURL
 
+allCovidData2JSON :: IO B.ByteString
+allCovidData2JSON = simpleHttp $ covidData2URL
+
 allCountryDataJSON :: IO B.ByteString
 allCountryDataJSON = simpleHttp $ countryDataURL
 
-testRun :: IO()
-testRun = do
+refreshDB :: IO()
+refreshDB = do
     cov <- (eitherDecode <$> allCovidDataJSON) :: IO (Either String [Coviddata])
     countries <- (eitherDecode <$> allCountryDataJSON) :: IO (Either String [Country])
 
     case cov of
         Left err -> print err
-        Right d ->  testInsert d
-    
-    testSelect
+        Right d ->  refreshCoviddata d
 
     case countries of
         Left err -> print err
-        Right d ->  testInsert' d
-    
-    testSelect'
+        Right d ->  refreshCountries d
 
-testInsert :: [Coviddata] -> IO()
-testInsert covject = runSqlite "CovCheck.sqlite3" $ do
+refreshDB2 :: IO()
+refreshDB2 = do
+    cov <- (eitherDecode <$> allCovidData2JSON) :: IO (Either String (Global, Object))
+
+    case cov of
+        Left err -> print err
+        Right (_, d) ->  print d
+
+refreshCoviddata :: [Coviddata] -> IO()
+refreshCoviddata covject = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
-
+    deleteWhere [CoviddataCases >=. 0]
     ids <- forM covject insert
     print ids
 
+refreshCoviddata2 :: [Coviddata2] -> IO()
+refreshCoviddata2 covject = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+--    deleteWhere [Coviddata2TotalConfirmed >=. 0]
+    ids <- forM covject insert
+    print ids
+{--
 testSelect :: IO()
 testSelect = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
 
     selection <- selectList [CoviddataCountry ==. "AF"] []
     print selection
-
-testInsert' :: [Country] -> IO()
-testInsert' countject = runSqlite "CovCheck.sqlite3" $ do
+--}
+refreshCountries :: [Country] -> IO()
+refreshCountries countject = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
-
+    deleteWhere [CountryNumeric >=. ""]
     ids <- forM countject insert
     print ids
-
+{--
 testSelect' :: IO()
 testSelect' = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
 
     selection <- selectList [CountryName ==. "Afghanistan"] []
     print selection
+--}
