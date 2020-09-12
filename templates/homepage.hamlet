@@ -8,10 +8,10 @@
          
     <div  style="height:500px;overflow:auto;" .container>
         <div .jumbotron>
-                <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
+                <a href=@{QuizR} .btn.btn-success.btn-lg> Take the quiz
 
         <div .jumbotron>
-                <a href=@{CovidStatsR} id="cases" .btn.btn-info.btn-lg>  Check the stats
+                <a href=@{CovidStatsR} .btn.btn-success.btn-lg>  Check the stats
             <br>
             <center>
             <span id="source">Source: <a href=https://covid19api.com/> Covid19 API </a> 

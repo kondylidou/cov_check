@@ -52,6 +52,6 @@ $else
                 <p style="color:#000000">
                     CovCheck Web App
                     <br>
-                    Developed by:   Lidia Kondylidou, Luca Maio, kevin Tchokodeu. 
+                    Developed by:   Lidia Kondylidou, Luca Maio, Kevin Tchokodeu. 
                     <br>
                     #{appCopyright $ appSettings master}

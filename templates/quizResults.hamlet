@@ -1,10 +1,9 @@
 
 <div .jumbotron>
-    <li .list-group-item>
         <h2> <center> Quiz results 
     <div .jumbotron>
-        <li .list-group-item>
-            <div .container>
+        <div style="height:500px;overflow:auto;" .container .container>
+            <li .list-group-item>
                         $maybe (QuizData nam sur em age liv car wor smo pre con (Symptoms fe fe4 chi ach los tir cou nos diar thr head bre) (Record lun dia hea obe ste imm flu)) <- submission
                             <p>The result is: You should see a doctor because either you have many symptoms or you belong to a high risk group based on your medical record!
                             <li .list-group-item>Name: <em>#{nam}</em>
@@ -96,6 +95,6 @@
 
                         $nothing
                             <center><strong>You are healthy or didn't take the quiz yet
+        <br>
         <center>
-            <a href=@{QuizR}>
-                        Take the quiz again 
+            <a href=@{QuizR} .btn.btn-success.btn-lg> Take the quiz again 
