@@ -6,22 +6,14 @@
             <h1> Global statistics and Covid online quiz 
             <br> 
          
-    <div .container>
-        <div class="div-1" .jumbotron>
-            <h2> <center> <p style="color:#000000";>Take the quiz</p>
-            <div .jumbotron>
-                    <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
-
-    <div .container>
+    <div  style="height:500px;overflow:auto;" .container>
         <div .jumbotron>
-            <h2> <center> <p style="color:#000000";>Check the stats</p>
-            <div .jumbotron>
-                    <center>
-                        <a href=@{CovidStatsR} id="cases" .btn.btn-info.btn-lg>  Stats
+                <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
 
-                       
-                        <br>
-                        <center>
-                        <span id="source">Source: <a href=https://covid19api.com/> Covid19 API </a> 
+        <div .jumbotron>
+                <a href=@{CovidStatsR} id="cases" .btn.btn-info.btn-lg>  Check the stats
+            <br>
+            <center>
+            <span id="source">Source: <a href=https://covid19api.com/> Covid19 API </a> 
 
 

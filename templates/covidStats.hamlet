@@ -7,7 +7,7 @@
                 <p> Enter a specific country: <br>
                 <input type="text" id="searchbar" onkeyup="filter()" placeholder="Search for country..">
 
-            <div style="height:360px;overflow:auto;" .jumbotron>
+            <div style="height:400px;overflow:auto;" .jumbotron>
                         <table id="covtable" width=100% height=60%>
                             <thead>
                                 <tr id="firstcolumn">
