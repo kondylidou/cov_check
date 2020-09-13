@@ -75,7 +75,6 @@ covidTable = mempty
     <> Table.int "Cases"        coviddataCases
     <> Table.int "Deaths"       coviddataDeaths
     <> Table.int "Recoveries"   coviddataRecovered
-    <> Table.text "Last Updated" coviddataLast_update
 
 countryTable :: Table App Country
 countryTable = mempty
@@ -100,6 +99,12 @@ tableGeneralized orientation content = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
     countries <- selectList [] [(orientation) (content)]
     return $  fmap (\Entity {entityKey=_, entityVal=b} -> b) countries
+
+lastUpdated :: IO(Text)
+lastUpdated = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    country <- selectFirst [] [Desc CoviddataCases]
+    return $ (\(Just (Entity{entityKey = _a, entityVal = Coviddata {coviddataCountry = _co, coviddataLast_update = lu, coviddataCases = _ca, coviddataDeaths = _de, coviddataRecovered = _re}})) -> lu) country
 
 covidDataURL :: String
 covidDataURL = "https://covid19-api.org/api/status"
