@@ -7,16 +7,6 @@ li {
     font-size: 20px
 }
 
-##{commentTextareaId} {
-    width: 400px;
-    height: 100px;
-}
-
-#source {
-    color: black;
-}
-
-
 div-1 {
     background-color: #EBEBEB;
 }

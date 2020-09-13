@@ -41,20 +41,24 @@ postQuizResultsR = do
         setTitle "Quiz Result"
         $(widgetFile "quizResults")
 
+
+-- The results logic was build based on the symptoms file in our project
 processSymptoms :: Symptoms -> Bool
 processSymptoms symptoms 
     | fever symptoms == True = True
     | fever4 symptoms == True = True
-    | cough symptoms && tired symptoms == True = True
-    | cough symptoms && diarrhea symptoms == True = True
-    | cough symptoms && headache symptoms == True = True
-    | cough symptoms && loss symptoms == True = True
-    | tired symptoms && diarrhea symptoms == True = True
-    | tired symptoms && headache symptoms == True = True
-    | tired symptoms && loss symptoms == True = True
-    | diarrhea symptoms && loss symptoms == True = True
-    | diarrhea symptoms && headache symptoms == True = True
-    | headache symptoms && loss symptoms == True = True
+    | cough symptoms == True = True
+    | breath symptoms == True = True
+    | aches symptoms && throat symptoms && diarrhea symptoms == True = True
+    | aches symptoms && throat symptoms && headache symptoms == True = True
+    | aches symptoms && throat symptoms && loss symptoms == True = True
+    | aches symptoms && diarrhea symptoms && headache symptoms == True = True
+    | aches symptoms && diarrhea symptoms && loss symptoms == True = True
+    | aches symptoms && headache symptoms && loss symptoms == True = True
+    | throat symptoms && diarrhea symptoms && headache symptoms == True = True
+    | throat symptoms && diarrhea symptoms && loss symptoms == True = True
+    | throat symptoms && headache symptoms && loss symptoms == True = True
+    | diarrhea symptoms && headache symptoms && loss symptoms == True = True
     | otherwise = False
 
 processRecord :: Record -> Bool

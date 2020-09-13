@@ -75,6 +75,8 @@ largeFormConfig = BootstrapFormConfig { form = BootstrapBasicForm, submit = "com
 
 bootstrapFieldHelper config label placeholder = bootstrapFieldSettings config label Nothing placeholder Nothing Nothing
 
+
+--The implementation of the data form for the quiz representation
 quizDataForm :: Html -> MForm Handler (FormResult QuizData, Widget)
 quizDataForm = renderBootstrap largeFormConfig $ QuizData
     <$> areq textField (bootstrapFieldHelper iConfig "Name" (Just "Person name")) Nothing
@@ -120,7 +122,6 @@ getQuizR = do
     let submission = Nothing :: Maybe QuizData
         handlerName = "getQuizR" :: Text
     defaultLayout $ do
-        --addStylesheetRemote "//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
         setTitle "Quiz"
         $(widgetFileReload def "Quiz")
 

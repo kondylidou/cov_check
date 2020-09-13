@@ -11,8 +11,6 @@
 
 /quiz QuizR GET 
 
-/comments CommentR POST
-
 /profile ProfileR GET
 
 /covidStats CovidStatsR GET
