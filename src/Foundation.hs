@@ -172,7 +172,6 @@ instance Yesod App where
     isAuthorized (StaticR _) _ = return Authorized
     isAuthorized CovidStatsR _ = return Authorized
     isAuthorized TestYesodTableAPIR _ = return Authorized
-    isAuthorized TestColonnadeAPIR _ = return Authorized
     isAuthorized QuizResultsR _ = return Authorized
 
     -- the profile route requires that the user is authenticated, so we

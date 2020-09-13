@@ -42,12 +42,15 @@ getTestYesodTableAPIR :: Handler Html
 getTestYesodTableAPIR = do
     liftIO $ refreshDB
     defaultLayout $ do
+        setTitle "Global Covid-19 Statistics"
         [whamlet|
 <div .container>
     <div .jumbotron>
         <h2> <center> Worldwide Stats about the Coronavirus
-        <div .jumbotron>
+        <div style="height:400px;overflow:auto;" .jumbotron>
             ^{Table.buildBootstrap covidTable $ unsafePerformIO casesDesc}
+        <div style="height:350px;overflow:auto;" .jumbotron>
+            ^{Table.buildBootstrap countryTable $ unsafePerformIO countriesAsc}
         Source: <a href=https://covid19-api.org/> Covid-19 API </a> 
         |]
 --        Table.buildBootstrap covidTable $ unsafePerformIO casesDesc
@@ -59,6 +62,11 @@ covidTable = mempty
     <> Table.int "Cases"        coviddataCases
     <> Table.int "Deaths"       coviddataDeaths
     <> Table.int "Recoveries"   coviddataRecovered
+
+countryTable :: Table App Country
+countryTable = mempty
+    <> Table.text "Abreviation" countryAlpha2
+    <> Table.text "Country"     countryName    
 
 covidTable2 :: Table App Coviddata2
 covidTable2 = mempty
@@ -72,6 +80,12 @@ tableCasesDesc = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
     countries <- selectList [] [Desc CoviddataCases]
     return $ testHandler $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
+
+countriesAsc :: IO([Country])
+countriesAsc = runSqlite "CovCheck.sqlite3" $ do
+    runMigration migrateAll
+    countries <- selectList [] [Asc CountryName]
+    return $ fmap (\Entity {entityKey=a, entityVal=b} -> b) countries
 
 casesDesc :: IO([Coviddata])
 casesDesc = runSqlite "CovCheck.sqlite3" $ do
@@ -152,7 +166,7 @@ refreshCoviddata covject = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
     deleteWhere [CoviddataCases >=. 0]
     ids <- forM covject insert
-    print ids
+    return ()
 
 refreshCoviddata2 :: [Coviddata2] -> IO()
 refreshCoviddata2 covject = runSqlite "CovCheck.sqlite3" $ do
@@ -173,7 +187,7 @@ refreshCountries countject = runSqlite "CovCheck.sqlite3" $ do
     runMigration migrateAll
     deleteWhere [CountryNumeric >=. ""]
     ids <- forM countject insert
-    print ids
+    return ()
 {--
 testSelect' :: IO()
 testSelect' = runSqlite "CovCheck.sqlite3" $ do
