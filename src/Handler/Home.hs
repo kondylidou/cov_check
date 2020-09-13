@@ -6,18 +6,6 @@
 module Handler.Home where
 
 import Import
-import Yesod.Form.Bootstrap3 (BootstrapFormLayout (..), renderBootstrap3)
-import Text.Julius (RawJS (..))
-
---for parsing
-import Network.HTTP.Conduit (simpleHttp)
-import Data.Aeson
-import qualified Data.ByteString.Lazy.Internal as B
---for database
-import Database.Persist
-import Database.Persist.Sqlite
-import Database.Persist.TH
-
 
 -- This is a handler function for the GET request method on the HomeR
 -- resource pattern. All of your resource patterns are defined in
