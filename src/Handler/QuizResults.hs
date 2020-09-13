@@ -8,7 +8,7 @@
 
 module Handler.QuizResults where
 
-import Import hiding (renderBootstrap)
+import Import hiding (renderBootstrap, get)
 
 import Control.Applicative ((<$>), (<*>))
 import Data.Text           (Text)
@@ -17,10 +17,27 @@ import Yesod.Default.Util
 import Yesod.Form.Jquery
 import GHC.Generics
 import qualified Data.Text as T
+import Control.Monad.State
 
 import Handler.Quiz
 import Form.Bootstrap3
 
+type RecomValue = Int
+type RecomState = (Bool,Int)
+
+makeRecom :: [Bool] -> State RecomState RecomValue
+makeRecom []     = do
+    (_, score) <- get
+    return score
+    
+makeRecom (x:xs) = do
+    (on, score) <- get
+    case x of
+         True -> put (True, score + 1)
+         _ -> put (False, score)
+    makeRecom xs
+
+startState = (False, 0)
 
 -- The POST handler processes the form
 postQuizResultsR :: Handler Html
@@ -30,11 +47,9 @@ postQuizResultsR = do
         submission = case result of
             FormSuccess res -> case (conf res) of 
                 True -> Just res
-                _ -> case processSymptoms (symptoms res) of
-                    True -> Just res
-                    _ -> case processRecord (record res) of
-                        True -> Just res
-                        _ ->  Nothing
+                _ -> case evalState (makeRecom [processSymptoms (symptoms res), processRecord (record res)]) startState of
+                    0 -> Nothing
+                    _ -> Just res
             _ -> Nothing
 
     defaultLayout $ do
@@ -71,7 +86,6 @@ processRecord record
     | immunosuppressants record == True = True
     | flu record == True = True
     | otherwise = False
-
 
 
 
