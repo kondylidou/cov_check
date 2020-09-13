@@ -10,16 +10,15 @@
             <div style="height:400px;overflow:auto;" .jumbotron>
                         <table id="covtable" width=100% height=60%>
                             <thead>
-                                <tr id="firstcolumn">
+                                <tr style="background-color:#009440" id="firstcolumn">
                                     <th id="countries" onclick="sortCountries(0)"> Country</th>
                                     <th id="newcases" onclick="sortNumbers(1)"> New Cases</th>
                                     <th id="cases" onclick="sortNumbers(2)"> Total Cases</th>
                                     <th id="newdeaths" onclick="sortNumbers(3)"> New Deaths</th>
                                     <th id="deaths" onclick="sortNumbers(4)"> Total Deaths</th>
                                     <th id="recoveries" onclick="sortNumbers(5)"> Recoveries</th>
-                                <tr id="global">
+                                <tr style="background-color:#009440" id="global">
                             <tbody id="tabledata">
-                    <br>
         <center>
-        last updated: <span id="lastupdate"> </span> <br>
-        Source: <a href=https://covid19api.com/> Covid19 API </a> 
+            last updated: <span id="lastupdate"> </span> <br>
+            Source: <a href=https://covid19api.com/> Covid19 API </a> 

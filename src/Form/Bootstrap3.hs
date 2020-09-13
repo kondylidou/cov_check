@@ -95,12 +95,12 @@ submitWidget (BootstrapFormConfig (BootstrapHorizontalForm containerOffset conta
     <div .#{toOffset containerOffset} .#{containerClass}>
     <br> 
     <center>
-      <button type=submit .btn.btn-info.btn-lg>#{submit}
+      <button type=submit .btn.btn-success.btn-lg>#{submit}
 |]
 submitWidget (BootstrapFormConfig _ submit) = [whamlet|
                                                 <br>
                                                 <center>
-                                                  <button type=submit .btn.btn-info.btn-lg>#{submit}
+                                                  <button type=submit .btn.btn-success.btn-lg>#{submit}
                                                 |]
 
 helpWidget view = [whamlet|

@@ -8,5 +8,5 @@
 <div .container>
         <div .jumbotron>
                 <center>
-                    <a href=@{QuizR} .btn.btn-info.btn-lg> Take the quiz
-                    <a href=@{CovidStatsR} id="cases" .btn.btn-info.btn-lg>  Show the stats
+                    <a href=@{QuizR} .btn.btn-success.btn-lg> Take the quiz
+                    <a href=@{CovidStatsR} id="cases" .btn.btn-success.btn-lg>  Show the stats
