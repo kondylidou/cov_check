@@ -4,7 +4,7 @@ h2##{aDomId} {
 
 li {
     line-height: 2em;
-    font-size: 20px
+    font-size: 16px
 }
 
 ##{commentTextareaId} {
@@ -15,9 +15,3 @@ li {
 #source {
     color: black;
 }
-
-
-div-1 {
-    background-color: #EBEBEB;
-}
-    
