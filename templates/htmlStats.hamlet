@@ -4,17 +4,11 @@
 
         <div .jumbotron>
             <h> To sort by a specific column just click on that columns header.
-                <p> Enter a specific country: <br>
-                <input type="text" id="searchbar" onkeyup="filterNew()" placeholder="Search for country..">
+                <p> Enter a specific country <br>
+                <input type="text" id="searchbar" onkeyup="filter()" placeholder="Search for country..">
 
             <div style="height:400px;overflow:auto;" .jumbotron>
-                            ^{buildTableCov covidTable $ unsafePerformIO casesDesc}
-            <div style="height:400px;overflow:auto;" .jumbotron>
-                            ^{buildTableCountry countryTable $ unsafePerformIO countriesAsc}
-        <center>
-            Source: <a href=https://covid19api.com/> Covid19 API </a> 
-<!--            last updated: <span id="lastupdate"> </span> <br> -->
-<!--                        <table id="covtable" width=100% height=60%>
+                        <table id="covtable" width=100% height=60%>
                             <thead>
                                 <tr style="background-color:#009440" id="firstcolumn">
                                     <th id="countries" onclick="sortCountries(0)"> Country</th>
@@ -24,4 +18,7 @@
                                     <th id="deaths" onclick="sortNumbers(4)"> Total Deaths</th>
                                     <th id="recoveries" onclick="sortNumbers(5)"> Recoveries</th>
                                 <tr style="background-color:#009440" id="global">
-                            <tbody id="tabledata"> -->
+                            <tbody id="tabledata">                           
+        <center>
+            last updated: <span id="lastupdate"> </span> <br>       
+            Source: <a href=https://covid19api.com/> Covid19 API </a> 

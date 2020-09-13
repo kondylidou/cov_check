@@ -7,24 +7,6 @@ Coviddata json
     deaths Int
     recovered Int
     deriving Show
-Coviddata2 json
-    country Text constraint=primary_key
-    countryCode Text
-    slug Text
-    newConfirmed Int
-    totalConfirmed Int
-    newDeaths Int
-    totalDeaths Int
-    newRecovered Int
-    totalRecovered Int
-    date Text
-    deriving Show
-CovidJoin
-    name Text
-    cases Int
-    deaths Int
-    recovered Int
-    deriving Show
 Country json
     name Text constraint=primary_key
     alpha2 Text

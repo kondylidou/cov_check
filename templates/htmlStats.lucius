@@ -1,0 +1,50 @@
+#searchbar {
+    width: 100%;
+    border: 1px solid black;
+    margin-bottom: 12px;
+}
+table, thead, tbody, tr, td, th {
+  border: 1px solid black;
+  width: 100%
+  height: 60%
+}
+#firstcolumn {
+    background-color: #a3c4c7;
+}
+#firstcolumn th {
+    text-align: center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    background-color: #a3c4c7;
+}
+#global {
+    background-color: #a3c4c7;
+}
+#global th {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+#g_newCases, #g_cases, #g_newDeaths, #g_deaths, #g_recovered{
+    text-align: right;
+}
+#tabledata td{
+    border-left: 1px solid black;
+    border-right: 1px solid black;    
+}
+tr:hover {background-color: #ddd;}
+/* tr:nth-child(even) {background-color: #a3c4c7;} */
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}

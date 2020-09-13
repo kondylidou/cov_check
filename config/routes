@@ -15,7 +15,7 @@
 
 /covidStats CovidStatsR GET
 
-/testYesodTableAPI TestYesodTableAPIR GET
+/htmlStats HtmlStatsR GET
 
 /quizResults QuizResultsR POST 
 

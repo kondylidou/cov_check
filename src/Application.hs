@@ -45,7 +45,7 @@ import Handler.Home
 import Handler.Profile
 import Handler.Quiz
 import Handler.QuizResults
-import Handler.TestYesodTableAPI
+import Handler.HtmlStats
 import Handler.CovidStats
 
 -- This line actually creates our YesodDispatch instance. It is the second half
