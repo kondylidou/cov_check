@@ -27,14 +27,14 @@ type RecomState = (Bool,Int)
 
 makeRecom :: [Bool] -> State RecomState RecomValue
 makeRecom []     = do
-    (_, score) <- get
+    (_, val) <- get
     return score
     
 makeRecom (x:xs) = do
-    (on, score) <- get
+    (on, val) <- get
     case x of
-         True -> put (True, score + 1)
-         _ -> put (False, score)
+         True -> put (True, val + 1)
+         _ -> put (False, val)
     makeRecom xs
 
 startState = (False, 0)
