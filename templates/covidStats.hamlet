@@ -14,15 +14,3 @@
         <center>
             last updated: ^{unsafePerformIO lastUpdated} <br>
             Source: <a href=https://covid19-api.org/> Covid-19 API </a> 
-            
-<!--                        <table id="covtable" width=100% height=60%>
-                            <thead>
-                                <tr style="background-color:#009440" id="firstcolumn">
-                                    <th id="countries" onclick="sortCountries(0)"> Country</th>
-                                    <th id="newcases" onclick="sortNumbers(1)"> New Cases</th>
-                                    <th id="cases" onclick="sortNumbers(2)"> Total Cases</th>
-                                    <th id="newdeaths" onclick="sortNumbers(3)"> New Deaths</th>
-                                    <th id="deaths" onclick="sortNumbers(4)"> Total Deaths</th>
-                                    <th id="recoveries" onclick="sortNumbers(5)"> Recoveries</th>
-                                <tr style="background-color:#009440" id="global">
-                            <tbody id="tabledata"> -->
