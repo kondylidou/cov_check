@@ -2,7 +2,6 @@ $.ajax({
   url: 'https://api.covid19api.com/summary',
   dataType: 'json',
   success: function(data) {
-//    console.log(data);
     var shownTable = "";
     var global="<th> Global </th> <th id=\"g_newCases\"> " + data.Global.NewConfirmed + "<th id =\"g_cases\">" + data.Global.TotalConfirmed + "</th> <th id =\"g_newDeaths\">" + data.Global.NewDeaths + "</th> <th id =\"g_deaths\">" + data.Global.TotalDeaths + "</th> <th id =\"g_recovered\">" + data.Global.TotalRecovered + "</th>";
     var countryData = data.Countries;
@@ -23,12 +22,6 @@ $.ajax({
     for(i=0; i<countryNames.length; i++){
         shownTable += "<tr> <td>" + countryNames[i] + "</td> <td align=right>" + countryNewCases[i] +"</td> <td align=right>" + countryCases[i] + "</td> <td align=right>" + countryNewDeaths[i] + "</td> <td align=right>" + countryDeaths[i] + "</td> <td align=right>" + countryRecovered[i] + "</td> </tr>";
     }
-//    console.log(countryNames);
-//    console.log(countryCases);
-//    console.log(countryDeaths);
-//    console.log(countryRecovered);
-//    console.log(countryData);
-//    console.log(shownText);
     document.getElementById('global').innerHTML = global;
     document.getElementById('tabledata').innerHTML = shownTable;
     document.getElementById('lastupdate').innerHTML = countryData[0].Date;
