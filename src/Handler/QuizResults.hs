@@ -28,7 +28,7 @@ type RecomState = (Bool,Int)
 makeRecom :: [Bool] -> State RecomState RecomValue
 makeRecom []     = do
     (_, val) <- get
-    return score
+    return val
     
 makeRecom (x:xs) = do
     (on, val) <- get
