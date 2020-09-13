@@ -22,6 +22,7 @@ import Database.Persist.Sqlite
 --for table
 import Yesod.Table (Table)
 import qualified Yesod.Table as Table
+import Yesod.Core.Widget
 --for ugly programming by me
 import System.IO.Unsafe (unsafePerformIO)
 
@@ -48,13 +49,35 @@ getTestYesodTableAPIR = do
     <div .jumbotron>
         <h2> <center> Worldwide Stats about the Coronavirus
         <div style="height:400px;overflow:auto;" .jumbotron>
-            ^{Table.buildBootstrap covidTable $ unsafePerformIO casesDesc}
+            ^{buildTable covidTable $ unsafePerformIO casesDesc}
         <div style="height:350px;overflow:auto;" .jumbotron>
-            ^{Table.buildBootstrap countryTable $ unsafePerformIO countriesAsc}
+            ^{buildTable countryTable $ unsafePerformIO countriesAsc}
         Source: <a href=https://covid19-api.org/> Covid-19 API </a> 
         |]
 --        Table.buildBootstrap covidTable $ unsafePerformIO casesDesc
 --    unsafePerformIO $ tableCasesDesc
+
+buildTable :: Table site a -> [a] -> WidgetT site IO ()
+buildTable (Table.Table cols) vals = table $ do
+  thead $ mapM_ Table.header cols
+  tbody $ forM_ vals $ \val -> tr $ forM_ cols $ \col -> Table.cell col val
+  where table b  = asWidgetIO [whamlet|
+                     <table class="table table-striped table-hover">^{b}
+                   |]
+        thead b  = asWidgetIO [whamlet|
+                     <thead style="border: 1px solid black;">
+                       <tr>
+                         ^{b}
+                   |]
+        tbody b  = asWidgetIO [whamlet|
+                     <tbody>^{b}
+                   |]
+        tr b     = asWidgetIO [whamlet|
+                     <tr style="border: 1px solid black;">^{b}
+                   |]
+
+asWidgetIO :: WidgetT site IO () -> WidgetT site IO ()
+asWidgetIO = id
 
 covidTable :: Table App Coviddata
 covidTable = mempty
@@ -65,7 +88,7 @@ covidTable = mempty
 
 countryTable :: Table App Country
 countryTable = mempty
-    <> Table.text "Abreviation" countryAlpha2
+    <> Table.text "Abbreviation" countryAlpha2
     <> Table.text "Country"     countryName    
 
 covidTable2 :: Table App Coviddata2

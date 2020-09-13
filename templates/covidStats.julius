@@ -113,6 +113,41 @@ function sortNumbers(n) {
   }
 }
 
+function filterNew(){
+    var input, filter, table, tr, td, i, e, f, txtValue, txtValue2, txtValue3, txtValue4, countries, trcountries, abrevCountry, nameCountry;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("covtable");
+    tr = table.getElementsByTagName("tr");
+    countries = document.getElementById("countrytable");
+    trcountries = countries.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {               
+        abrevCountry = trcountries[i].getElementsByTagName("td")[0];
+        nameCountry = trcountries[i].getElementsByTagName("td")[1];
+        if (nameCountry) {
+            txtValue = nameCountry.textContent || nameCountry.innerText;
+            txtValue2 = nameCountry.textContent || nameCountry.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                for(e=0; e < tr.lentgh; e++){
+                    td = tr[e].getElementsByTagName("td")[0];
+                    txtValue3 = td.textContent || td.innerText;
+                    if(txtValue3.toUpperCase().indexOf(txtValue2) > -1){
+                        tr[e].style.display = "";
+                    } else {console.log("fuck");}
+                }
+            } else {
+                    for(e=0; e < tr.lentgh; e++){
+                        td = tr[e].getElementsByTagName("td")[0];
+                        txtValue4 = td.textContent || td.innerText;
+                        if(txtValue4.toUpperCase().indexOf(txtValue2) > -1){
+                            tr[e].style.display = "none";
+                        }
+                }
+            }
+        }
+    }
+}
+
 function filter(){
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("searchbar");
