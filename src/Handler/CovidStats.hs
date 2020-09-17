@@ -23,6 +23,7 @@ import System.IO.Unsafe (unsafePerformIO)
 
 getCovidStatsR :: Handler Html
 getCovidStatsR = do
+        liftIO $ refreshDB
         defaultLayout $ do
             setTitle "Global Covid-19 Statistics"
             $(widgetFile "covidStats")
