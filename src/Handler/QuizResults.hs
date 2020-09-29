@@ -12,11 +12,7 @@ import Import hiding (renderBootstrap, get)
 
 import Control.Applicative ((<$>), (<*>))
 import Data.Text           (Text)
-import Data.Time           (Day, TimeOfDay (..))
 import Yesod.Default.Util 
-import Yesod.Form.Jquery
-import GHC.Generics
-import qualified Data.Text as T
 import Control.Monad.State
 
 import Handler.Quiz
@@ -25,6 +21,7 @@ import Form.Bootstrap3
 type RecomValue = Int
 type RecomState = (Bool,Int)
 
+-- state monad that takes an area of booleans and returns a value
 makeRecom :: [Bool] -> State RecomState RecomValue
 makeRecom []     = do
     (_, val) <- get

@@ -12,10 +12,8 @@ import Import hiding (renderBootstrap)
 
 import Control.Applicative ((<$>), (<*>))
 import Data.Text           (Text)
-import Data.Time           (Day, TimeOfDay (..))
 import Yesod.Default.Util 
 import Yesod.Form.Jquery
-import GHC.Generics
 import qualified Data.Text as T
 
 import Form.Bootstrap3
@@ -35,7 +33,7 @@ data QuizData = QuizData
     , symptoms            :: Symptoms
     , record              :: Record
     }
-   deriving (Show,Generic)
+   deriving Show
 
 
 data Symptoms = Symptoms
@@ -113,7 +111,7 @@ quizDataForm = renderBootstrap largeFormConfig $ QuizData
             <*> areq boolField (bootstrapFieldHelper hConfig "Are you currently taking steroids?" (Just "Some bool")) Nothing
             <*> areq boolField (bootstrapFieldHelper hConfig "Are you currently taking immunosuppressants?" (Just "bool")) Nothing
             <*> areq boolField (bootstrapFieldHelper hConfig "Have you been vaccinated against flu between October 2019 and today?" (Just "Some bool")) Nothing
-
+ 
 
 -- The GET handler displays the form
 getQuizR :: Handler Html
