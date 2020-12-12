@@ -8,7 +8,8 @@ build:
         - echo "Building"
         - mkdir build 
         - touch build/info.txt
-    artefact: 
+    artifacts:
+        paths:  
         - build/
 
 
